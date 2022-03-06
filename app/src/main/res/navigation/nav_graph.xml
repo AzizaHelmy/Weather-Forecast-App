@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.weatherforecastapp.home.view.HomeFragment"
+        android:label="Weather"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/favFragment"
+        android:name="com.example.weatherforecastapp.fav.view.FavFragment"
+        android:label="Favorits"
+        tools:layout="@layout/fragment_fav" />
+    <fragment
+        android:id="@+id/alertsFragment"
+        android:name="com.example.weatherforecastapp.alerts.view.AlertsFragment"
+        android:label="Alerts"
+        tools:layout="@layout/fragment_alerts" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.weatherforecastapp.settings.SettingsFragment"
+        android:label="Settings" />
+</navigation>
