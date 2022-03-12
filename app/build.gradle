@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -65,5 +66,10 @@ dependencies {
     implementation 'com.airbnb.android:lottie:3.6.1'
     //workManger
     implementation "androidx.work:work-runtime:2.7.1"
-
+    //shimmer rv
+//    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+//    implementation 'com.todkars:shimmer-recyclerview:0.4.1'
+    //Map and location
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+    implementation 'com.google.android.gms:play-services-location:19.0.1'
 }
