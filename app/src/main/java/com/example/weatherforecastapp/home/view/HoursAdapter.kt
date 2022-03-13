@@ -27,7 +27,7 @@ class HoursAdapter(val hours: List<Hours>, val context: Context) :
         holder.binding.tvHour.text="5:00"
         holder.binding.tvHourTemp.text="-7"
         holder.binding.tvHourTempUnit.text="°"
-        holder.binding.ivHourIcon.setImageResource(R.drawable.storm)
+        holder.binding.ivHourIcon.setImageResource(R.drawable.windo)
     }
 
     override fun getItemCount(): Int {

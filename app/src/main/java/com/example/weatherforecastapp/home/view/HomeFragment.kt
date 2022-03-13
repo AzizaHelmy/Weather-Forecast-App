@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherforecastapp.R
@@ -45,6 +46,12 @@ class HomeFragment : Fragment(),HoursOnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.tv7days.setOnClickListener(object :View.OnClickListener{
+            override fun onClick(view: View?) {
+              Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment_to_nextDaysFragment)
+            }
+
+        })
     }
 
     override fun onItemClicked(hour: Hours) {

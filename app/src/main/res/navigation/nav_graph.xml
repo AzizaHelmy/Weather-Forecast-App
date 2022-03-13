@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.example.weatherforecastapp.home.view.HomeFragment"
         android:label="Weather"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_nextDaysFragment"
+            app:destination="@id/nextDaysFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favFragment"
         android:name="com.example.weatherforecastapp.favorite.view.FavFragment"
@@ -33,4 +37,9 @@
         android:name="com.example.weatherforecastapp.favorite.view.MapsFragment"
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" />
+    <fragment
+        android:id="@+id/nextDaysFragment"
+        android:name="com.example.weatherforecastapp.home.view.NextDaysFragment"
+        android:label="fragment_next_days"
+        tools:layout="@layout/fragment_next_days" />
 </navigation>

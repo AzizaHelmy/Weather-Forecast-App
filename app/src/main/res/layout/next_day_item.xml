@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    app:cardCornerRadius="22dp"
+    app:cardElevation="15dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_day_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:text="Today"
+            android:textSize="21sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_date_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="Sun,6 March"
+            android:textSize="21sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_day_item"
+            app:layout_constraintStart_toStartOf="@+id/tv_day_item"
+            app:layout_constraintTop_toBottomOf="@+id/tv_day_item" />
+
+        <ImageView
+            android:id="@+id/iv_next_7day"
+            android:layout_width="302dp"
+            android:layout_height="220dp"
+            android:layout_marginTop="7dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_date_item"
+            app:srcCompat="@drawable/sun" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_humidity"
+            android:layout_width="117dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="37dp"
+            android:layout_marginTop="17dp"
+            app:cardBackgroundColor="#ADCEE8"
+            app:cardCornerRadius="17dp"
+            app:cardElevation="7dp"
+            app:layout_constraintStart_toStartOf="@id/iv_next_7day"
+            app:layout_constraintTop_toBottomOf="@+id/tv_description_item">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_humidity_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="33"
+                    android:textColor="#30383E"
+                    android:textSize="27sp"
+                    app:layout_constraintEnd_toEndOf="@id/tv_humidity_item"
+                    app:layout_constraintStart_toStartOf="@id/tv_humidity_item"
+                    app:layout_constraintTop_toBottomOf="@id/tv_humidity_item" />
+
+                <TextView
+                    android:id="@+id/tv_humidity_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Humidity"
+                    android:textColor="#FFFFFF"
+                    android:textSize="21sp"
+                    app:layout_constraintEnd_toEndOf="@id/iv_humidity_icon"
+                    app:layout_constraintStart_toStartOf="@id/iv_humidity_icon"
+                    app:layout_constraintTop_toBottomOf="@id/iv_humidity_icon" />
+
+                <ImageView
+                    android:id="@+id/iv_humidity_icon"
+                    android:layout_width="49dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="7dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/humidity3" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_wind_speed_item"
+            android:layout_width="117dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="17dp"
+            app:cardBackgroundColor="#ADCEE8"
+            app:cardCornerRadius="17dp"
+            app:cardElevation="7dp"
+            android:layout_marginEnd="27dp"
+            app:layout_constraintEnd_toEndOf="@id/iv_next_7day"
+            app:layout_constraintTop_toBottomOf="@+id/tv_description_item">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_wind_speed_unit_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="87"
+                    android:textColor="#2E2D2D"
+                    android:textSize="27sp"
+                    app:layout_constraintEnd_toEndOf="@id/tv_wind_speed_item"
+                    app:layout_constraintStart_toStartOf="@id/tv_wind_speed_item"
+                    app:layout_constraintTop_toBottomOf="@id/tv_wind_speed_item" />
+
+                <TextView
+                    android:id="@+id/tv_wind_speed_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wind Speed"
+                    android:textColor="@color/white"
+                    android:textSize="19sp"
+                    app:layout_constraintEnd_toEndOf="@id/iv_wind_speed_item"
+                    app:layout_constraintStart_toStartOf="@id/iv_wind_speed_item"
+                    app:layout_constraintTop_toBottomOf="@id/iv_wind_speed_item" />
+
+                <ImageView
+                    android:id="@+id/iv_wind_speed_item"
+                    android:layout_width="56dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="7dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/wind" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card"
+            android:layout_width="117dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="5dp"
+            app:cardBackgroundColor="#ADCEE8"
+            app:cardCornerRadius="17dp"
+            app:cardElevation="7dp"
+            app:layout_constraintStart_toStartOf="@id/card_humidity"
+            app:layout_constraintTop_toBottomOf="@+id/card_humidity">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/_tv_pressure_unit_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="13"
+                    android:textColor="#2E2D2D"
+                    android:textSize="27sp"
+                    app:layout_constraintEnd_toEndOf="@id/tv_pressure_item"
+                    app:layout_constraintStart_toStartOf="@id/tv_pressure_item"
+                    app:layout_constraintTop_toBottomOf="@id/tv_pressure_item" />
+
+                <TextView
+                    android:id="@+id/tv_pressure_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pressure"
+                    android:textColor="@color/white"
+                    android:textSize="21sp"
+                    app:layout_constraintEnd_toEndOf="@id/iv_pressure_item"
+                    app:layout_constraintStart_toStartOf="@id/iv_pressure_item"
+                    app:layout_constraintTop_toBottomOf="@id/iv_pressure_item" />
+
+                <ImageView
+                    android:id="@+id/iv_pressure_item"
+                    android:layout_width="46dp"
+                    android:layout_height="27dp"
+                    android:layout_marginTop="7dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/pressure" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_cloud_item"
+            android:layout_width="117dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="5dp"
+            app:cardBackgroundColor="#ADCEE8"
+            app:cardCornerRadius="17dp"
+            app:cardElevation="7dp"
+            app:layout_constraintStart_toStartOf="@id/card_wind_speed_item"
+            app:layout_constraintTop_toBottomOf="@+id/card_wind_speed_item">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_cloud_unit_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="93"
+                    android:textColor="#2E2D2D"
+                    android:textSize="27sp"
+                    app:layout_constraintEnd_toEndOf="@id/tv_cloud_item"
+                    app:layout_constraintStart_toStartOf="@id/tv_cloud_item"
+                    app:layout_constraintTop_toBottomOf="@id/tv_cloud_item" />
+
+                <TextView
+                    android:id="@+id/tv_cloud_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Clouds"
+                    android:textColor="@color/white"
+                    android:textSize="21sp"
+                    app:layout_constraintEnd_toEndOf="@id/iv_cloud_item"
+                    app:layout_constraintStart_toStartOf="@id/iv_cloud_item"
+                    app:layout_constraintTop_toBottomOf="@id/iv_cloud_item" />
+
+                <ImageView
+                    android:id="@+id/iv_cloud_item"
+                    android:layout_width="55dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="7dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/cloud" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_temp_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="25"
+            android:textSize="37sp"
+            android:layout_marginTop="7dp"
+            app:layout_constraintEnd_toEndOf="@id/iv_next_7day"
+            app:layout_constraintStart_toStartOf="@id/iv_next_7day"
+            app:layout_constraintTop_toBottomOf="@id/iv_next_7day" />
+
+        <TextView
+            android:id="@+id/tv_unit_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="°"
+            android:textSize="35sp"
+            android:layout_margin="7dp"
+            app:layout_constraintStart_toEndOf="@id/tv_temp_item"
+            app:layout_constraintTop_toBottomOf="@id/iv_next_7day" />
+
+        <TextView
+            android:id="@+id/tv_temp_type_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="C"
+            android:textSize="27sp"
+            app:layout_constraintStart_toEndOf="@id/tv_unit_item"
+          app:layout_constraintTop_toTopOf="@id/tv_unit_item" />
+
+        <TextView
+            android:id="@+id/tv_description_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear Sky"
+            android:textSize="27sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_temp_item"
+            app:layout_constraintEnd_toEndOf="@id/tv_temp_item"
+            app:layout_constraintStart_toStartOf="@id/tv_temp_item"
+          />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
