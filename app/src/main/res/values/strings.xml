@@ -20,4 +20,18 @@
     <string name="favorits">Favorits</string>
     <string name="alerts">Alerts</string>
     <string name="settings">Settings</string>
+    <string name="country">Giza, Government</string>
+    <string name="date">Sun, 6 March</string>
+    <string name="description">Clearly Sky</string>
+    <string name="tempretur">-5</string>
+    <string name="unit">°</string>
+    <string name="type">C</string>
+    <string name="humidity">Humidity</string>
+    <string name="wind_speed">Wind speed</string>
+    <string name="pressure">Pressure</string>
+    <string name="clouds">Clouds</string>
+    <string name="hourly_forecast">Hourly Forecast</string>
+    <string name="next_7_days"><![CDATA[Next 7 Days >]]></string>
+    <string name="time">02:00</string>
+    <string name="today">Today</string>
 </resources>
