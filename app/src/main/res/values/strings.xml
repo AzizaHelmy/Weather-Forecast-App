@@ -23,7 +23,7 @@
     <string name="country">Giza, Government</string>
     <string name="date">Sun, 6 March</string>
     <string name="description">Clearly Sky</string>
-    <string name="tempretur">-5</string>
+    <string name="tempretur">0.0</string>
     <string name="unit">°</string>
     <string name="type">C</string>
     <string name="humidity">Humidity</string>

@@ -29,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:text="@string/date"
+            android:visibility="gone"
             android:textSize="21sp"
             app:layout_constraintEnd_toEndOf="@+id/tv_day_item"
             app:layout_constraintStart_toStartOf="@+id/tv_day_item"
@@ -48,7 +49,7 @@
             android:id="@+id/card_humidity"
             android:layout_width="117dp"
             android:layout_height="100dp"
-            android:layout_marginStart="37dp"
+            android:layout_marginStart="35dp"
             android:layout_marginTop="17dp"
             app:cardBackgroundColor="#ADCEE8"
             app:cardCornerRadius="17dp"
@@ -66,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:text="33"
                     android:textColor="#30383E"
-                    android:textSize="27sp"
+                    android:textSize="21sp"
                     app:layout_constraintEnd_toEndOf="@id/tv_humidity_item"
                     app:layout_constraintStart_toStartOf="@id/tv_humidity_item"
                     app:layout_constraintTop_toBottomOf="@id/tv_humidity_item" />
@@ -102,7 +103,7 @@
             app:cardBackgroundColor="#ADCEE8"
             app:cardCornerRadius="17dp"
             app:cardElevation="7dp"
-            android:layout_marginEnd="27dp"
+            android:layout_marginEnd="25dp"
             app:layout_constraintEnd_toEndOf="@id/iv_next_7day"
             app:layout_constraintTop_toBottomOf="@+id/tv_description_item">
 
@@ -116,7 +117,7 @@
                     android:layout_height="wrap_content"
                     android:text="87"
                     android:textColor="#2E2D2D"
-                    android:textSize="27sp"
+                    android:textSize="21sp"
                     app:layout_constraintEnd_toEndOf="@id/tv_wind_speed_item"
                     app:layout_constraintStart_toStartOf="@id/tv_wind_speed_item"
                     app:layout_constraintTop_toBottomOf="@id/tv_wind_speed_item" />
@@ -149,7 +150,7 @@
             android:id="@+id/card"
             android:layout_width="117dp"
             android:layout_height="100dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="7dp"
             app:cardBackgroundColor="#ADCEE8"
             app:cardCornerRadius="17dp"
             app:cardElevation="7dp"
@@ -161,12 +162,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/_tv_pressure_unit_item"
+                    android:id="@+id/tv_pressure_unit_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="13"
                     android:textColor="#2E2D2D"
-                    android:textSize="27sp"
+                    android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="@id/tv_pressure_item"
                     app:layout_constraintStart_toStartOf="@id/tv_pressure_item"
                     app:layout_constraintTop_toBottomOf="@id/tv_pressure_item" />
@@ -199,7 +200,7 @@
             android:id="@+id/card_cloud_item"
             android:layout_width="117dp"
             android:layout_height="100dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="7dp"
             app:cardBackgroundColor="#ADCEE8"
             app:cardCornerRadius="17dp"
             app:cardElevation="7dp"
@@ -216,7 +217,7 @@
                     android:layout_height="wrap_content"
                     android:text="93"
                     android:textColor="#2E2D2D"
-                    android:textSize="27sp"
+                    android:textSize="21sp"
                     app:layout_constraintEnd_toEndOf="@id/tv_cloud_item"
                     app:layout_constraintStart_toStartOf="@id/tv_cloud_item"
                     app:layout_constraintTop_toBottomOf="@id/tv_cloud_item" />

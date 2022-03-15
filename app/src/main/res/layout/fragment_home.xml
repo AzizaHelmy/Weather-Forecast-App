@@ -67,7 +67,7 @@
 
                 <ImageView
                     android:id="@+id/iv_icon"
-                    android:layout_width="206dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="112dp"
                     android:src="@drawable/windo"
                     app:layout_constraintEnd_toEndOf="@id/tv_discription"
@@ -77,7 +77,7 @@
                 <TextView
                     android:id="@+id/tv_tempreture"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="69dp"
                     android:layout_marginTop="3dp"
                     android:text="@string/tempretur"
                     android:textColor="@color/black"
@@ -94,7 +94,6 @@
                     android:text="@string/unit"
                     android:textColor="@color/black"
                     android:textSize="29sp"
-                    app:layout_constraintEnd_toEndOf="@id/tv_discription"
                     app:layout_constraintStart_toEndOf="@id/tv_tempreture"
                     app:layout_constraintTop_toTopOf="@id/tv_unit" />
 
@@ -102,10 +101,10 @@
                     android:id="@+id/tv_unit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="7dp"
+                    android:layout_marginEnd="5dp"
                     android:text="@string/type"
                     android:textSize="27sp"
-                    app:layout_constraintEnd_toEndOf="@id/tv_discription"
+                    app:layout_constraintStart_toEndOf="@id/tv_temp_symbol"
                     app:layout_constraintTop_toBottomOf="@id/tv_discription" />
 
                 <com.google.android.material.card.MaterialCardView
@@ -127,9 +126,9 @@
                             android:id="@+id/tv_humidity_temp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="31"
+                            android:text=""
                             android:textColor="@color/black"
-                            android:textSize="27sp"
+                            android:textSize="21sp"
                             app:layout_constraintEnd_toEndOf="@id/tv_humidity"
                             app:layout_constraintStart_toStartOf="@id/tv_humidity"
                             app:layout_constraintTop_toBottomOf="@id/tv_humidity" />
@@ -179,9 +178,9 @@
                             android:id="@+id/tv_wind_speed_unit"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="39"
+                            android:text=""
                             android:textColor="@color/black"
-                            android:textSize="27sp"
+                            android:textSize="21sp"
                             app:layout_constraintEnd_toEndOf="@id/tv_wind_speed"
                             app:layout_constraintStart_toStartOf="@id/tv_wind_speed"
                             app:layout_constraintTop_toBottomOf="@id/tv_wind_speed" />
@@ -229,9 +228,9 @@
                             android:id="@+id/tv_pressure_unit"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="70"
+                            android:text=""
                             android:textColor="@color/black"
-                            android:textSize="27sp"
+                            android:textSize="20sp"
                             app:layout_constraintEnd_toEndOf="@id/tv_pressure"
                             app:layout_constraintStart_toStartOf="@id/tv_pressure"
                             app:layout_constraintTop_toBottomOf="@id/tv_pressure" />
@@ -279,9 +278,9 @@
                             android:id="@+id/tv_clouds_unit"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="33"
+                            android:text=""
                             android:textColor="@color/black"
-                            android:textSize="27sp"
+                            android:textSize="21sp"
                             app:layout_constraintEnd_toEndOf="@id/tv_clouds"
                             app:layout_constraintStart_toStartOf="@id/tv_clouds"
                             app:layout_constraintTop_toBottomOf="@id/tv_clouds" />
@@ -305,7 +304,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/cloud1" />
+                            app:srcCompat="@drawable/cloud3" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
