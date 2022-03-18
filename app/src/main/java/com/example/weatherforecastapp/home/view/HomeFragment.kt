@@ -1,13 +1,25 @@
 package com.example.weatherforecastapp.home.view
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Context.LOCATION_SERVICE
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.LocationManager
+
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
+import android.os.Looper
+import com.google.android.gms.location.LocationRequest
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -17,6 +29,11 @@ import com.example.weatherforecastapp.R
 import com.example.weatherforecastapp.databinding.FragmentHomeBinding
 import com.example.weatherforecastapp.home.model.Hourly
 import com.example.weatherforecastapp.home.viewmodel.WeatherViewModel
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.LocationServices
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -25,10 +42,22 @@ class HomeFragment : Fragment() {
 
     private lateinit var hoursAdapter: HoursAdapter
     private lateinit var hours: List<Hourly>
-
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private var yourLocationLat: Double = 0.0
+    private var yourLocationLon: Double = 0.0
+    companion object {
+        private const val PERMISSINO_ID = 0
+    }
     //KTX
     private val weatherViewModel: WeatherViewModel by viewModels()
 
+    private val locationCallback = object : LocationCallback() {
+        override fun onLocationResult(locationResult: LocationResult) {
+            super.onLocationResult(locationResult)
+            yourLocationLat = locationResult.lastLocation.altitude
+           yourLocationLon = locationResult.lastLocation.latitude
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadSettings()
@@ -42,6 +71,7 @@ class HomeFragment : Fragment() {
         val locationUsingGps = sharedPreferences.getBoolean("USE_DEVICE_LOCATION", true)
 
     }
+
     //============================================
     @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
@@ -51,8 +81,8 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(LayoutInflater.from(context), container, false)
         weatherViewModel.getData(
             requireContext(),
-            30.621175336675805,
-            32.26823826304946,
+            yourLocationLat,
+            yourLocationLon,
             "ar",
             "metric"
         )
@@ -68,33 +98,7 @@ class HomeFragment : Fragment() {
             val temp = weather.current.temp.toInt().toString()
             val country = it.timezone
             Log.e("TAG", icon)
-            binding.tvTempreture.text = temp
-            binding.tvDiscription.text = description
-            binding.tvHumidityTemp.text = "$humidity %"
-            binding.tvPressureUnit.text = "$pressure hpa"
-            binding.tvWindSpeedUnit.text = "$windSpeed m/s"
-            binding.tvCloudsUnit.text = "$clouds %"
-            binding.tvCountry.text = country
-            when (icon) {
-                "01d" -> binding.ivIcon.setImageResource(R.drawable.icon1)
-                "02d" -> binding.ivIcon.setImageResource(R.drawable.icon2)
-                "03d" -> binding.ivIcon.setImageResource(R.drawable.icon3)
-                "04d" -> binding.ivIcon.setImageResource(R.drawable.icon4)
-                "09d" -> binding.ivIcon.setImageResource(R.drawable.storm)
-                "10d" -> binding.ivIcon.setImageResource(R.drawable.few_cloud)
-                "11d" -> binding.ivIcon.setImageResource(R.drawable.few_clouds)
-                "13d" -> binding.ivIcon.setImageResource(R.drawable.storm)
-                "50d" -> binding.ivIcon.setImageResource(R.drawable.storm)
-                "01n" -> binding.ivIcon.setImageResource(R.drawable.storm)
-                "02n" -> binding.ivIcon.setImageResource(R.drawable.scarred)
-                "03n" -> binding.ivIcon.setImageResource(R.drawable.sun)
-                "04n" -> binding.ivIcon.setImageResource(R.drawable.few_clouds)
-                "09n" -> binding.ivIcon.setImageResource(R.drawable.sun)
-                "10n" -> binding.ivIcon.setImageResource(R.drawable.storm)
-                "11n" -> binding.ivIcon.setImageResource(R.drawable.storm)
-                "13n" -> binding.ivIcon.setImageResource(R.drawable.storm)
-                "50n" -> binding.ivIcon.setImageResource(R.drawable.storm)
-            }
+            setData(temp, description, humidity, pressure, windSpeed, clouds, country, icon)
             setUpRecyclerView()
         }
 
@@ -107,6 +111,46 @@ class HomeFragment : Fragment() {
 
     }
 
+    @SuppressLint("SetTextI18n")
+    private fun setData(
+        temp: String,
+        description: String,
+        humidity: String,
+        pressure: String,
+        windSpeed: String,
+        clouds: String,
+        country: String,
+        icon: String
+    ) {
+        binding.tvTempreture.text = temp
+        binding.tvDiscription.text = description
+        binding.tvHumidityTemp.text = "$humidity %"
+        binding.tvPressureUnit.text = "$pressure hpa"
+        binding.tvWindSpeedUnit.text = "$windSpeed m/s"
+        binding.tvCloudsUnit.text = "$clouds %"
+        binding.tvCountry.text = country
+        when (icon) {
+            "01d" -> binding.ivIcon.setImageResource(R.drawable.icon1)
+            "02d" -> binding.ivIcon.setImageResource(R.drawable.icon2)
+            "03d" -> binding.ivIcon.setImageResource(R.drawable.icon3)
+            "04d" -> binding.ivIcon.setImageResource(R.drawable.icon4)
+            "09d" -> binding.ivIcon.setImageResource(R.drawable.storm)
+            "10d" -> binding.ivIcon.setImageResource(R.drawable.few_cloud)
+            "11d" -> binding.ivIcon.setImageResource(R.drawable.few_clouds)
+            "13d" -> binding.ivIcon.setImageResource(R.drawable.storm)
+            "50d" -> binding.ivIcon.setImageResource(R.drawable.storm)
+            "01n" -> binding.ivIcon.setImageResource(R.drawable.storm)
+            "02n" -> binding.ivIcon.setImageResource(R.drawable.scarred)
+            "03n" -> binding.ivIcon.setImageResource(R.drawable.sun)
+            "04n" -> binding.ivIcon.setImageResource(R.drawable.few_clouds)
+            "09n" -> binding.ivIcon.setImageResource(R.drawable.sun)
+            "10n" -> binding.ivIcon.setImageResource(R.drawable.storm)
+            "11n" -> binding.ivIcon.setImageResource(R.drawable.storm)
+            "13n" -> binding.ivIcon.setImageResource(R.drawable.storm)
+            "50n" -> binding.ivIcon.setImageResource(R.drawable.storm)
+        }
+    }
+
     private fun setUpRecyclerView() {
         val layoutManager = LinearLayoutManager(requireActivity())
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
@@ -117,14 +161,85 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.tv7days.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View?) {
-                Navigation.findNavController(requireView())
-                    .navigate(R.id.action_homeFragment_to_nextDaysFragment)
-            }
+        binding.tv7days.setOnClickListener {
+            //i will pass lat , long
+            Navigation.findNavController(requireView())
+                .navigate(R.id.action_homeFragment_to_nextDaysFragment)
 
-        })
+        }
+
+        getMyLocation()
+    }
+  //=========================================================
+        @SuppressLint("MissingPermission")
+    private fun getMyLocation() {
+        if (checkPermissions()) {
+            if (isLocationEnabled()) {
+
+             val locationRequest = LocationRequest()
+                locationRequest.priority =LocationRequest.PRIORITY_HIGH_ACCURACY
+                locationRequest.interval = 0
+                locationRequest.fastestInterval = 0
+                locationRequest.numUpdates = 1
+
+                fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
+                fusedLocationClient.requestLocationUpdates(
+                    locationRequest, locationCallback,
+                    Looper.myLooper()!!
+                )
+
+            } else {
+                Toast.makeText(requireContext(), "Turn on location", Toast.LENGTH_LONG).show()
+                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                startActivity(intent)
+            }
+        } else {
+            requestPermisssion()
+        }
     }
 
-
+    //============================================
+    private fun isLocationEnabled(): Boolean {
+        val locationManager = context?.getSystemService(AppCompatActivity.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
+            LocationManager.NETWORK_PROVIDER
+        )
+    }
+    //=============================================
+    private fun checkPermissions(): Boolean {
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            return true
+        }
+        return false
+    }
+   //==============================================
+    fun requestPermisssion() {
+        ActivityCompat.requestPermissions(
+            requireActivity(),
+            arrayOf(
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ), PERMISSINO_ID
+        )
+    }
+   //==============================================
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode ==PERMISSINO_ID) {
+            if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                //getLastLocation()
+            }
+        }
+    }
 }

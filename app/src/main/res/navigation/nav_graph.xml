@@ -52,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
-        android:name="com.example.weatherforecastapp.favorite.view.MapsFragment"
+        android:name="com.example.weatherforecastapp.map.MapsFragment"
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" >
         <action

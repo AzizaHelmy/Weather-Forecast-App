@@ -1,24 +1,16 @@
-package com.example.weatherforecastapp.favorite.view
+package com.example.weatherforecastapp.map
 
 import android.Manifest
-import android.annotation.SuppressLint
-import android.content.Context
-import android.content.Context.LOCATION_SERVICE
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
-import android.location.LocationManager
 import android.location.LocationRequest
 import android.os.Bundle
-import android.os.Looper
-import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
@@ -29,7 +21,6 @@ import com.example.weatherforecastapp.favorite.model.Favorite
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationResult
-import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -46,14 +37,9 @@ class MapsFragment : Fragment() {
     private lateinit var secondContainer: ConstraintLayout
     private lateinit var favPlace: Favorite
     private lateinit var buttAdd: Button
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private lateinit var locationRequest: LocationRequest
-    private var yourLocationLat: Double = 0.0
-    private var yourLocationLon: Double = 0.0
 
-    companion object {
-        private const val PERMISSINO_ID = 0
-    }
+
+
 
     private val callback = OnMapReadyCallback { googleMap ->
         googleMap.mapType = GoogleMap.MAP_TYPE_NORMAL
@@ -86,24 +72,12 @@ class MapsFragment : Fragment() {
         }
     }
 
-    private val locationCallback = object : LocationCallback() {
-        override fun onLocationResult(locationResult: LocationResult) {
-            super.onLocationResult(locationResult)
-            val longtitude = locationResult.lastLocation.altitude
-            val ltitude = locationResult.lastLocation.latitude
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var mLocationRequest = com.google.android.gms.location.LocationRequest()
-        mLocationRequest.priority = com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY
-        mLocationRequest.interval = 0
-        mLocationRequest.fastestInterval = 0
-        mLocationRequest.numUpdates = 1
 
 
 //        binding = FragmentMapsBinding.inflate(LayoutInflater.from(context), container, false)
@@ -117,7 +91,10 @@ class MapsFragment : Fragment() {
         secondContainer = view.findViewById(R.id.add_container)
         buttAdd = view.findViewById(R.id.butt_add)
         buttAdd.setOnClickListener {
-            val action = MapsFragmentDirections.actionMapsFragmentToFavFragment(favPlace)
+            val action =
+              MapsFragmentDirections.actionMapsFragmentToFavFragment(
+                    favPlace
+                )
             findNavController().navigate(action)
             //Navigation.findNavController(requireView()).navigate(R.id.action_mapsFragment_to_favFragment)
 
@@ -126,74 +103,6 @@ class MapsFragment : Fragment() {
         mapFragment?.getMapAsync(callback)
 
     }
-
-    //============================================
-//    private fun isLocationEnabled(): Boolean {
-//        var locationManager: LocationManager =
-//            getSystemService(LOCATION_SERVICE) as LocationManager
-//        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
-//            LocationManager.NETWORK_PROVIDER
-//        )
-//    }
-
-    //================================================
-    private fun checkPermissions(): Boolean {
-        if (ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED &&
-            ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
-            return true
-        }
-        return false
-    }
-
     //=======================================================
-//    @SuppressLint("MissingPermission")
-//    private fun getMyLocation() {
-//        if (checkPermissions()) {
-//            if (isLocationEnabled()) {
-//                fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
-//                fusedLocationClient.requestLocationUpdates(
-//                    locationRequest, locationCallback,
-//                    Looper.myLooper()!!
-//                )
-//
-//            } else {
-//                Toast.makeText(requireContext(), "Turn on location", Toast.LENGTH_LONG).show()
-//                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-//                startActivity(intent)
-//            }
-//        } else {
-//            requestPermisssion()
-//        }
-//    }
 
-    //==============================================
-    fun requestPermisssion() {
-        ActivityCompat.requestPermissions(
-            requireActivity(),
-            arrayOf(
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ), PERMISSINO_ID
-        )
-    }
-
-    //========================================================
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        if (requestCode == PERMISSINO_ID) {
-            if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                //getLastLocation()
-            }
-        }
-    }
 }
