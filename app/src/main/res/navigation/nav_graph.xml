@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/favFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -22,21 +22,46 @@
         <action
             android:id="@+id/action_favFragment_to_mapsFragment"
             app:destination="@id/mapsFragment" />
+        <action
+            android:id="@+id/action_favFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <argument
+            android:name="CurrentFav"
+            app:argType="com.example.weatherforecastapp.favorite.model.Favorite"
+            />
     </fragment>
     <fragment
         android:id="@+id/alertsFragment"
         android:name="com.example.weatherforecastapp.alerts.view.AlertsFragment"
         android:label="Alerts"
-        tools:layout="@layout/fragment_alerts" />
+        tools:layout="@layout/fragment_alerts" >
+        <action
+            android:id="@+id/action_alertsFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.weatherforecastapp.settings.SettingsFragment"
-        android:label="Settings" />
+        android:label="Settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_alertsFragment"
+            app:destination="@id/alertsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mapsFragment"
         android:name="com.example.weatherforecastapp.favorite.view.MapsFragment"
         android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" />
+        tools:layout="@layout/fragment_maps" >
+        <action
+            android:id="@+id/action_mapsFragment_to_favFragment"
+            app:destination="@id/favFragment" />
+        <argument
+            android:name="favorites"
+            app:argType="com.example.weatherforecastapp.favorite.model.Favorite" />
+    </fragment>
     <fragment
         android:id="@+id/nextDaysFragment"
         android:name="com.example.weatherforecastapp.home.view.NextDaysFragment"

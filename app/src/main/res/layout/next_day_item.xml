@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+<com.google.android.material.card.MaterialCardView
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="16dp"
+    android:layout_gravity="center"
     app:cardCornerRadius="22dp"
+
     app:cardElevation="15dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="17dp"
+        android:background="@drawable/ohh"
+        >
 
         <TextView
             android:id="@+id/tv_day_item"
@@ -29,8 +40,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:text="@string/date"
-            android:visibility="gone"
             android:textSize="21sp"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="@+id/tv_day_item"
             app:layout_constraintStart_toStartOf="@+id/tv_day_item"
             app:layout_constraintTop_toBottomOf="@+id/tv_day_item" />
@@ -95,15 +106,16 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/card_wind_speed_item"
             android:layout_width="117dp"
             android:layout_height="100dp"
             android:layout_marginTop="17dp"
+            android:layout_marginEnd="25dp"
             app:cardBackgroundColor="#ADCEE8"
             app:cardCornerRadius="17dp"
             app:cardElevation="7dp"
-            android:layout_marginEnd="25dp"
             app:layout_constraintEnd_toEndOf="@id/iv_next_7day"
             app:layout_constraintTop_toBottomOf="@+id/tv_description_item">
 
@@ -151,6 +163,7 @@
             android:layout_width="117dp"
             android:layout_height="100dp"
             android:layout_marginTop="7dp"
+            android:layout_marginBottom="17dp"
             app:cardBackgroundColor="#ADCEE8"
             app:cardCornerRadius="17dp"
             app:cardElevation="7dp"
@@ -159,7 +172,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_marginBottom="17dp"
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/tv_pressure_unit_item"
@@ -250,10 +264,10 @@
             android:id="@+id/tv_temp_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
             android:text="@string/tempretur"
             android:textSize="41sp"
             android:textStyle="bold"
-            android:layout_marginTop="7dp"
             app:layout_constraintEnd_toEndOf="@id/iv_next_7day"
             app:layout_constraintStart_toStartOf="@id/iv_next_7day"
             app:layout_constraintTop_toBottomOf="@id/iv_next_7day" />
@@ -262,9 +276,9 @@
             android:id="@+id/tv_unit_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="7dp"
             android:text="@string/unit"
             android:textSize="35sp"
-            android:layout_margin="7dp"
             app:layout_constraintStart_toEndOf="@id/tv_temp_item"
             app:layout_constraintTop_toBottomOf="@id/iv_next_7day" />
 
@@ -275,7 +289,7 @@
             android:text="C"
             android:textSize="27sp"
             app:layout_constraintStart_toEndOf="@id/tv_unit_item"
-          app:layout_constraintTop_toTopOf="@id/tv_unit_item" />
+            app:layout_constraintTop_toTopOf="@id/tv_unit_item" />
 
         <TextView
             android:id="@+id/tv_description_item"
@@ -283,9 +297,9 @@
             android:layout_height="wrap_content"
             android:text="@string/description"
             android:textSize="27sp"
-            app:layout_constraintTop_toBottomOf="@id/tv_temp_item"
             app:layout_constraintEnd_toEndOf="@id/tv_temp_item"
             app:layout_constraintStart_toStartOf="@id/tv_temp_item"
-          />
+            app:layout_constraintTop_toBottomOf="@id/tv_temp_item" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
+</ScrollView>

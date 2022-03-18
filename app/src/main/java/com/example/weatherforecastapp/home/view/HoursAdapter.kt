@@ -9,6 +9,7 @@ import com.example.weatherforecastapp.R
 import com.example.weatherforecastapp.databinding.HoursItemBinding
 import com.example.weatherforecastapp.home.model.Hourly
 import com.example.weatherforecastapp.home.model.Hours
+import com.example.weatherforecastapp.utils.DateTime
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -25,21 +26,32 @@ class HoursAdapter(private val hours: List<Hourly>, val context: Context) :
             )
         )
     }
-//utility method
-    @SuppressLint("SimpleDateFormat")
-    fun convertFromUnixToTime(time: Long?): String {
-        if(time != null) {
-            val sdf = SimpleDateFormat("HH:mm aaa")
-            val date = Date(time * 1000)
-            return sdf.format(date)
-        }
-        return "00:00"
-    }
+
     override fun onBindViewHolder(holder: HoursViewHolder, position: Int) {
         val hourly = hours[position]
-        holder.binding.tvHour.text=convertFromUnixToTime(hourly.dt.toLong())
-        holder.binding.tvHourTemp.text=hourly.temp.toString()
-        holder.binding.ivHourIcon.setImageResource(R.drawable.windo)
+        holder.binding.tvHour.text=DateTime.convertFromUnixToTime(hourly.dt.toLong())
+        holder.binding.tvHourTemp.text=hourly.temp.toInt().toString()
+        val icon= hourly.weather[0].icon
+        when (icon) {
+            "01d" -> holder.binding.ivHourIcon.setImageResource(R.drawable.sun)
+            "02d" -> holder.binding.ivHourIcon.setImageResource(R.drawable.icon2)
+            "03d" -> holder.binding.ivHourIcon.setImageResource(R.drawable.icon3)
+            "04d" -> holder.binding.ivHourIcon.setImageResource(R.drawable.icon4)
+            "09d" -> holder.binding.ivHourIcon.setImageResource(R.drawable.storm)
+            "10d" -> holder.binding.ivHourIcon.setImageResource(R.drawable.few_cloud)
+            "11d" -> holder.binding.ivHourIcon.setImageResource(R.drawable.few_clouds)
+            "13d" -> holder.binding.ivHourIcon.setImageResource(R.drawable.storm)
+            "50d" -> holder.binding.ivHourIcon.setImageResource(R.drawable.storm)
+            "01n" -> holder.binding.ivHourIcon.setImageResource(R.drawable.night)
+            "02n" -> holder.binding.ivHourIcon.setImageResource(R.drawable.storm)
+            "03n" -> holder.binding.ivHourIcon.setImageResource(R.drawable.storm)
+            "04n" -> holder.binding.ivHourIcon.setImageResource(R.drawable.few_clouds)
+            "09n" -> holder.binding.ivHourIcon.setImageResource(R.drawable.storm)
+            "10n" -> holder.binding.ivHourIcon.setImageResource(R.drawable.storm)
+            "11n" -> holder.binding.ivHourIcon.setImageResource(R.drawable.storm)
+            "13n" -> holder.binding.ivHourIcon.setImageResource(R.drawable.storm)
+            "50n" -> holder.binding.ivHourIcon.setImageResource(R.drawable.storm)
+        }
     }
 
     override fun getItemCount(): Int {

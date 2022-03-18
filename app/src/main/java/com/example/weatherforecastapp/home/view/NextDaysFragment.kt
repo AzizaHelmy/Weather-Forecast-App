@@ -30,7 +30,7 @@ class NextDaysFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentNextDaysBinding.inflate(LayoutInflater.from(context), container, false)
-        weatherViewModel.getData()
+        weatherViewModel.getData(requireContext(),30.621175336675805,32.26823826304946,"ar","metric")
         weatherViewModel.liveData.observe(requireActivity()) {
             val weatherResponse = it
             daily = weatherResponse.daily

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">تطبيق النشره الجويه</string>
+    <string name="home">الرئيسيه</string>
+    <string name="favorits">المفضله</string>
+    <string name="alerts">التنبيهات</string>
+    <string name="settings">الاعدادات</string>
+    <string name="country">محافظه الجيزه</string>
+    <string name="date">15 مارس</string>
+    <string name="description">سماء صافيه</string>
+    <string name="tempretur">0.0</string>
+    <string name="unit">°</string>
+    <string name="type">C</string>
+    <string name="humidity">الرطوبه</string>
+    <string name="wind_speed">سرعه الرياح</string>
+    <string name="pressure">الضغط</string>
+    <string name="clouds">السحب</string>
+    <string name="hourly_forecast">Hourly Forecast</string>
+    <string name="next_7_days">السبعه الايام القادمه</string>
+    <string name="time">02:00</string>
+    <string name="today">اليوم</string>
+    <string name="system_theme_description">اتباع النظام</string>
+    <string name="dark_theme_description">مظلم</string>
+    <string name="light_theme_description">ساطع</string>
+    <string name="english_language_preference_value">الانجليزيه</string>
+    <string name="arabic_language_preference_value">العربيه</string>
+    <!-- Themes Preferences -->
+    <string name="dark_theme_preference_value">مظلم</string>
+    <string name="light_theme_preference_value">ساطع</string>
+    <string name="system_theme_preference_value">اتباع النظام</string>
+
+</resources>

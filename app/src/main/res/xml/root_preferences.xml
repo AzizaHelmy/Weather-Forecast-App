@@ -1,35 +1,62 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
-    <PreferenceCategory app:title="@string/messages_header">
-
-        <EditTextPreference
-            app:key="signature"
-            app:title="@string/signature_title"
-            app:useSimpleSummaryProvider="true" />
-
+    <PreferenceCategory
+        android:icon="@drawable/ic_location"
+        android:title="Weather Location">
+        <SwitchPreference
+            android:defaultValue="true"
+            android:disableDependentsState="true"
+            android:key="USE_DEVICE_LOCATION"
+            android:summary="Allow the app to get your location"
+            android:title="GPS" />
+        <Preference
+            android:dependency="USE_DEVICE_LOCATION"
+            android:key="CUSTOM_LOCATION"
+            android:summary="Choose your location from Map"
+            android:title="Map" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:icon="@drawable/ic_transform"
+        android:title="Units">
         <ListPreference
-            app:defaultValue="reply"
-            app:entries="@array/reply_entries"
-            app:entryValues="@array/reply_values"
-            app:key="reply"
-            app:title="@string/reply_title"
-            app:useSimpleSummaryProvider="true" />
-
+            android:defaultValue="METRIC"
+            android:entries="@array/unit_system_entries"
+            android:entryValues="@array/unit_system_values"
+            android:key="unit"
+            android:summary="%s"
+            android:title="Unit System" />
     </PreferenceCategory>
-
-    <PreferenceCategory app:title="@string/sync_header">
-
-        <SwitchPreferenceCompat
-            app:key="sync"
-            app:title="@string/sync_title" />
-
-        <SwitchPreferenceCompat
-            app:dependency="sync"
-            app:key="attachment"
-            app:summaryOff="@string/attachment_summary_off"
-            app:summaryOn="@string/attachment_summary_on"
-            app:title="@string/attachment_title" />
-
+    <PreferenceCategory
+        android:icon="@drawable/ic_language"
+        android:title="Language">
+        <ListPreference
+            android:defaultValue="en"
+            android:entries="@array/languages_entries"
+            android:entryValues="@array/languages_values"
+            android:key="language"
+            android:summary="%s"
+            android:title="App Language" />
     </PreferenceCategory>
-
+    <PreferenceCategory
+        android:title="Notification"
+        app:icon="@drawable/ic_notifications">
+        <SwitchPreference
+            android:key="notification_prefrence_key"
+            android:summary="show current weather as Notification"
+            android:title="Notifiaction" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:icon="@drawable/ic_light_mode"
+        android:title="Theme">
+        <ListPreference
+            android:entries="@array/themes_entries"
+            android:entryValues="@array/themes_values"
+            android:key="@string/theme_prefrence_key"
+            android:summary="%s"
+            android:title="App Theme"
+            app:defaultValue="@string/dark_theme_preference_value" />
+    </PreferenceCategory>
 </PreferenceScreen>

@@ -97,6 +97,7 @@ class AlertsFragment : Fragment() {
     }
 
     //==========================================================================
+
     private fun showAddAlertDialoge() {
         builder = AlertDialog.Builder(requireContext())
         builder.setCancelable(false)

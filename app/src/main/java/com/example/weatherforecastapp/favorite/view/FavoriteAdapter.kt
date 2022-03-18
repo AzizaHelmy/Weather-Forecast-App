@@ -8,9 +8,8 @@ import com.example.weatherforecastapp.databinding.FavPlacesItemBinding
 import com.example.weatherforecastapp.databinding.FragmentFavBinding
 import com.example.weatherforecastapp.favorite.model.Favorite
 
-class FavoriteAdapter(val favorites: ArrayList<Favorite>, val context: Context) :
+class FavoriteAdapter(val favorites: List<Favorite>, val context: Context) :
     RecyclerView.Adapter<FavoriteAdapter.FavsViewHolder>() {
-    private lateinit var binding: FragmentFavBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavsViewHolder {
 
@@ -24,7 +23,8 @@ class FavoriteAdapter(val favorites: ArrayList<Favorite>, val context: Context) 
     }
 
     override fun onBindViewHolder(holder: FavsViewHolder, position: Int) {
-        TODO("Not yet implemented")
+       val model=favorites[position]
+
     }
 
     override fun getItemCount(): Int {

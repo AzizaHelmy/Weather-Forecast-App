@@ -20,4 +20,37 @@
         <item>Notification</item>
         <item>Alarm</item>
     </string-array>
+
+    <!-- for units-->
+    <string-array name="unit_system_entries">
+        <item>Metric (C°:meter/sec)</item>
+        <item>Imperial (F°:miles/hour)</item>
+        <item>Standard (K°:meter/sec)</item>
+    </string-array>
+    <string-array name="unit_system_values">
+        <item>METRIC</item>
+        <item>IMPERIAL</item>
+        <item>STANDARD</item>
+    </string-array>
+    <!--for languages-->
+    <string-array name="languages_entries">
+        <item>English</item>
+        <item>Arabic</item>
+    </string-array>
+    <string-array name="languages_values">
+        <item>@string/english_language_preference_value</item>
+        <item>@string/arabic_language_preference_value</item>
+    </string-array>
+    <!--for themes-->
+    <string-array name="themes_entries">
+        <item>Dark</item>
+        <item>Light</item>
+        <item>System default</item>
+    </string-array>
+    <string-array name="themes_values">
+        <item>@string/dark_theme_preference_value</item>
+        <item>@string/light_theme_preference_value</item>
+        <item>@string/system_theme_preference_value</item>
+    </string-array>
+
 </resources>

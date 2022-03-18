@@ -11,6 +11,7 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherforecastapp.R
 import com.example.weatherforecastapp.databinding.FragmentHomeBinding
@@ -30,16 +31,31 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadSettings()
 
     }
 
+    private fun loadSettings() {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val units = sharedPreferences.getString("unit", "")
+        val language = sharedPreferences.getString("language", "ar")
+        val locationUsingGps = sharedPreferences.getBoolean("USE_DEVICE_LOCATION", true)
+
+    }
+    //============================================
     @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(LayoutInflater.from(context), container, false)
-        weatherViewModel.getData()
+        weatherViewModel.getData(
+            requireContext(),
+            30.621175336675805,
+            32.26823826304946,
+            "ar",
+            "metric"
+        )
         weatherViewModel.liveData.observe(requireActivity()) {
             val weather = it
             hours = weather?.hourly ?: emptyList()
@@ -49,7 +65,7 @@ class HomeFragment : Fragment() {
             val clouds = weather.current.clouds.toString()
             val description = weather.current.weather[0].description
             val icon = weather.current.weather[0].icon
-            val temp = weather.current.temp.toString()
+            val temp = weather.current.temp.toInt().toString()
             val country = it.timezone
             Log.e("TAG", icon)
             binding.tvTempreture.text = temp
@@ -70,10 +86,10 @@ class HomeFragment : Fragment() {
                 "13d" -> binding.ivIcon.setImageResource(R.drawable.storm)
                 "50d" -> binding.ivIcon.setImageResource(R.drawable.storm)
                 "01n" -> binding.ivIcon.setImageResource(R.drawable.storm)
-                "02n" -> binding.ivIcon.setImageResource(R.drawable.storm)
-                "03n" -> binding.ivIcon.setImageResource(R.drawable.storm)
+                "02n" -> binding.ivIcon.setImageResource(R.drawable.scarred)
+                "03n" -> binding.ivIcon.setImageResource(R.drawable.sun)
                 "04n" -> binding.ivIcon.setImageResource(R.drawable.few_clouds)
-                "09n" -> binding.ivIcon.setImageResource(R.drawable.storm)
+                "09n" -> binding.ivIcon.setImageResource(R.drawable.sun)
                 "10n" -> binding.ivIcon.setImageResource(R.drawable.storm)
                 "11n" -> binding.ivIcon.setImageResource(R.drawable.storm)
                 "13n" -> binding.ivIcon.setImageResource(R.drawable.storm)

@@ -1,7 +1,10 @@
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+    id 'kotlin-parcelize'
+    id ("androidx.navigation.safeargs")
 }
 
 android {
@@ -23,15 +26,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_1_8
+//        targetCompatibility JavaVersion.VERSION_1_8
+//    }
+//    kotlinOptions {
+//        jvmTarget = '1.8'
+//    }
+    buildFeatures {
+        viewBinding true
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
         jvmTarget = '1.8'
-    }
-    buildFeatures {
-        viewBinding true
     }
 }
 
@@ -72,8 +82,12 @@ dependencies {
     //Map and location
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
     implementation 'com.google.android.gms:play-services-location:19.0.1'
+
     //Coroutines Dependencies
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2"
+    //prefrences
+    implementation "androidx.preference:preference-ktx:1.2.0"
+    implementation 'com.google.android.material:material:1.5.0'
 }

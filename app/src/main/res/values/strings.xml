@@ -1,21 +1,14 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Weather App</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
 
-    <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
+    <!-- Languages Preferences -->
+    <string name="english_language_preference_value">en</string>
+    <string name="arabic_language_preference_value">ar</string>
+    <!-- Themes Preferences -->
+    <string name="dark_theme_preference_value">Dark</string>
+    <string name="light_theme_preference_value">Light</string>
+    <string name="system_theme_preference_value">Follow System</string>
 
-    <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="home">Home</string>
     <string name="favorits">Favorits</string>
     <string name="alerts">Alerts</string>
@@ -34,4 +27,10 @@
     <string name="next_7_days"><![CDATA[Next 7 Days >]]></string>
     <string name="time">02:00</string>
     <string name="today">Today</string>
+    <!-- Preference Titles -->
+
+    <string name="theme_prefrence_key" translatable="false">theme_prefrence_key</string>
+    <string name="system_theme_description">System default</string>
+    <string name="dark_theme_description">Dark</string>
+    <string name="light_theme_description">Light</string>
 </resources>
