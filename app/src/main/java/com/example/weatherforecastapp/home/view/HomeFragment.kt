@@ -7,7 +7,6 @@ import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
-import com.example.weatherforecastapp.R
 import android.os.Looper
 import android.provider.Settings
 import android.util.Log
@@ -15,16 +14,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import androidx.navigation.Navigation.findNavController
+import androidx.preference.Preference
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.weatherforecastapp.R
 import com.example.weatherforecastapp.databinding.FragmentHomeBinding
 import com.example.weatherforecastapp.home.model.Hourly
 import com.example.weatherforecastapp.home.viewmodel.WeatherViewModel
@@ -42,6 +41,7 @@ class HomeFragment : Fragment() {
     private var yourLocationLon: Double = 0.0
     private lateinit var units: String
     private lateinit var language: String
+    private lateinit var preferences: Preference
 
     companion object {
         private const val PERMISSINO_ID = 0
@@ -86,7 +86,9 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(LayoutInflater.from(context), container, false)
-        weatherViewModel.getData(
+        preferences = Preference(requireContext())
+        //units = preferences
+       weatherViewModel.getData(
             requireContext(),
             30.621175336675805,
             32.26823826304946,
@@ -141,8 +143,8 @@ class HomeFragment : Fragment() {
         binding.tvPressureUnit.text = "$pressure hpa"
         binding.tvWindSpeedUnit.text = "$windSpeed m/s"
         binding.tvCloudsUnit.text = "$clouds %"
-        if ( temp.toInt()>32){
-            binding.tvUnit.text="F"
+        if (temp.toInt() > 32) {
+            binding.tvUnit.text = "F"
         }
         binding.tvCountry.text = country
         when (icon) {

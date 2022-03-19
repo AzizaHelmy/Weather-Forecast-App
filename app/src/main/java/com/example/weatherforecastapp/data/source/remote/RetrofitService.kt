@@ -1,11 +1,12 @@
 package com.example.weatherforecastapp.data.source.remote
 
 import com.example.weatherforecastapp.home.model.Forecast
+import com.example.weatherforecastapp.utils.Constant
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-const val API_KEY = "3ad5f88f2ce3886821ab4d21d66f843a"
+
 
 interface RetrofitService {
 
@@ -17,6 +18,6 @@ interface RetrofitService {
         @Query("lang") lang: String="ar",
         @Query("units") units: String="metric",
         @Query("exclude") exclude: String = "minutely",
-        @Query("appid") appid: String = API_KEY
+        @Query("appid") appid: String = Constant.API_KEY
     ): Response<Forecast>
 }

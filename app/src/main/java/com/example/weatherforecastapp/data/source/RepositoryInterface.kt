@@ -14,4 +14,5 @@ interface RepositoryInterface {
     fun deleteAlert(alert: Alert)
     fun insertAlert(alert: Alert)
     fun getAllAlerts():LiveData<List<Alert>>
+    suspend fun isWeatherAlert(lat:Double, lng:Double):Boolean
 }

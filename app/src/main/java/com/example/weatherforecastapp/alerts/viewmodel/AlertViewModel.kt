@@ -48,7 +48,7 @@ class AlertViewModel(application: Application):AndroidViewModel(application),Wea
     }
 
     override fun updateAlert(alert: Alert) {
-        TODO("Not yet implemented")
+        //repo.up
     }
 
     override fun getAllAlerts(): LiveData<List<Alert>> {

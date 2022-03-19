@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherforecastapp.alerts.model.Alert
 import com.example.weatherforecastapp.databinding.AlertItemBinding
 
-class AlertAdapter(val alerts: List<Alert>, val context: Context,val alertOnClickListener: AlertOnClickListener) :
+class AlertAdapter(val alerts: List<Alert>, val context: Context, private val alertOnClickListener: AlertOnClickListener) :
     RecyclerView.Adapter<AlertAdapter.AlertsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlertsViewHolder {

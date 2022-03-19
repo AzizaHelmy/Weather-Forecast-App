@@ -48,7 +48,21 @@ class Repository(
 
         }
     }
-
+    //=========================================================
+     fun isWeatherAlert(lat:Double, lng:Double):Boolean{
+        var flag=false
+        CoroutineScope(Dispatchers.IO).launch {
+            val weatherCall = RetrofitFactory.getInstance().create(RetrofitService::class.java)
+            val response = weatherCall.getCurrentWeatherByLatAndLon(lat, lng)
+            if (response.isSuccessful) {
+                val weatherResponse = response.body()
+                remoteSource.getCurrentWeather(weatherResponse!!)
+                //lesssa
+            }
+        }
+        return flag
+    }
+    //===========================================================
     fun getFavs(): LiveData<List<Favorite>> {
         return localSource.getAllFavs()
     }

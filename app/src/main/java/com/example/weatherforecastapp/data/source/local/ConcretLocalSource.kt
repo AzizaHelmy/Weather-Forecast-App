@@ -9,8 +9,8 @@ class ConcretLocalSource( context: Context) :
     WeatherLocalSource {
     val database: WeatherDB = WeatherDB.getInstance(context)
     var weatherDAO: WeatherDAO  = database.weatherDao()
-    init {
 
+    init {
 
     }
 
@@ -30,19 +30,20 @@ class ConcretLocalSource( context: Context) :
         weatherDAO.deleteFav(favorite)
     }
 
-//    override fun insertAlert(alert: Alert) {
-//       //weatherDAO.insertAlert(alert)
-//    }
-//
-//    override fun deleteAlert(alert: Alert) {
-//       //weatherDAO.deleteAlert(alert)
-//    }
-//
-//    override fun updateAlert(alert: Alert) {
-//        TODO("Not yet implemented")
-//    }
-//
-//    override fun getAllAlerts(): LiveData<List<Alert>> {
-//        TODO("Not yet implemented")
-//    }
+    override fun insertAlert(alert: Alert) {
+        TODO("Not yet implemented")
+    }
+
+    override fun deleteAlert(alert: Alert) {
+        TODO("Not yet implemented")
+    }
+
+    override fun updateAlert(alert: Alert) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getAllAlerts(): LiveData<List<Alert>> {
+        TODO("Not yet implemented")
+    }
+
 }

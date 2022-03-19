@@ -96,4 +96,6 @@ dependencies {
     implementation("androidx.room:room-ktx:2.4.2")
     // To use Kotlin annotation processing tool (kapt)
     kapt("androidx.room:room-compiler:2.4.2")
+    //WorkManger
+    implementation("androidx.work:work-runtime-ktx:2.7.1")
 }
