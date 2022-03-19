@@ -9,6 +9,7 @@
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/drawable/gradient_square.xml" value="0.1385" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/drawable/ic_alarm.xml" value="0.2055" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/drawable/ic_alarm_add.xml" value="0.2055" />
+        <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/drawable/ic_delete.xml" value="0.1805" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/drawable/ic_favorite.xml" value="0.1" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/drawable/ic_home.xml" value="0.1885" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/drawable/ic_language.xml" value="0.1565" />
@@ -19,10 +20,10 @@
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/drawable/ic_settings.xml" value="0.1" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/drawable/ic_transform.xml" value="0.1565" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/activity_main.xml" value="0.16585365853658537" />
-        <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/add_alert_dialog.xml" value="0.18" />
+        <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/add_alert_dialog.xml" value="0.22" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/alert_item.xml" value="0.1675213675213675" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/fav_places_item.xml" value="0.2" />
-        <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/fragment_alerts.xml" value="0.18" />
+        <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/fragment_alerts.xml" value="0.22" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/fragment_fav.xml" value="0.20416666666666666" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/fragment_fav_weather.xml" value="0.20416666666666666" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/fragment_home.xml" value="0.18" />

@@ -24,7 +24,10 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(binding.bottomNav, navController)
 
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
-            if (destination.id == R.id.mapsFragment || destination.id == R.id.nextDaysFragment||destination.id==R.id.splashFragment) {
+            if (destination.id == R.id.mapsFragment ||
+                destination.id == R.id.nextDaysFragment ||
+                destination.id == R.id.splashFragment ||
+                destination.id == R.id.favWeatherFragment) {
                 binding.bottomNav.visibility = View.GONE
             } else {
                 binding.bottomNav.visibility = View.VISIBLE

@@ -2,8 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/fav_layout"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#DAD5D5"
     tools:context=".alerts.view.AlertsFragment">
@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="7dp"
         tools:context=".favorite.favplaces.view.FavFragment">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="36dp"
-            android:layout_marginBottom="100dp"
+            android:layout_marginBottom="90dp"
             android:clickable="true"
             android:src="@drawable/ic_add_location"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -28,45 +28,63 @@
             app:tint="@color/white" />
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="11dp"
             android:layout_margin="9dp"
-            android:id="@+id/card"
+            android:background="#DDD7D7"
+            app:cardCornerRadius="7dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-<!--            <fragment-->
-<!--                android:id="@+id/autocomplete_fragment"-->
-<!--                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="5dp"-->
-<!--                android:padding="7dp"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
+            <fragment
+                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:visibility="visible"
+                android:padding="7dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </com.google.android.material.card.MaterialCardView>
 
 
         <ImageView
             android:id="@+id/iv_fav_empty"
-            android:layout_width="361dp"
-            android:layout_height="473dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:src="@drawable/empty_list"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/tv_fav_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:text="Noting to show"
+            android:textColor="#9E9898"
+            android:textSize="21sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.572" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_fav_places"
             android:layout_width="match_parent"
-            android:layout_height="706dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="69dp"
+            android:layout_marginBottom="57dp"
             android:background="#DAD5D5"
-            app:layout_constraintStart_toStartOf="@id/card"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/card"
             tools:listitem="@layout/fav_places_item" />
 

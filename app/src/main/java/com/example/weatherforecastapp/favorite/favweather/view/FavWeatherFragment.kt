@@ -1,5 +1,6 @@
 package com.example.weatherforecastapp.favorite.favweather.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -21,7 +22,7 @@ import java.util.*
 
 class FavWeatherFragment : Fragment() {
     private lateinit var binding: FragmentFavWeatherBinding
-    private lateinit var hoursAdapter: HoursAdapter
+    private lateinit var favhoursAdapter: FavHoursAdapter
     private lateinit var hours: List<Hourly>
 
     //KTX
@@ -34,12 +35,27 @@ class FavWeatherFragment : Fragment() {
 
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentFavWeatherBinding.inflate(LayoutInflater.from(context), container, false)
 
+
+        return binding.root
+    }
+//================================================
+    private fun setUpRecyclerView() {
+        val layoutManager = LinearLayoutManager(requireActivity())
+        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        binding.rvHoursFav.layoutManager = layoutManager
+        favhoursAdapter = FavHoursAdapter(hours, requireContext())
+        binding.rvHoursFav.adapter = favhoursAdapter
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val args: Bundle = requireArguments()
         val favorite = args.getSerializable("favs") as Favorite
         val latitude = favorite.latitude
@@ -94,15 +110,6 @@ class FavWeatherFragment : Fragment() {
         val formatedDate: String =
             SimpleDateFormat("EEE, d MMM yyyy ", Locale.ENGLISH).format(date)
         binding.tvDateFav.text = formatedDate
-        return binding.root
-    }
-//================================================
-    private fun setUpRecyclerView() {
-        val layoutManager = LinearLayoutManager(requireActivity())
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        binding.rvHoursFav.layoutManager = layoutManager
-        hoursAdapter = HoursAdapter(hours, requireContext())
-        binding.rvHoursFav.adapter = hoursAdapter
     }
 
 

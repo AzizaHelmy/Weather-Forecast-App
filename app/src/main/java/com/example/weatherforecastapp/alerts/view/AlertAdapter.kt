@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherforecastapp.alerts.model.Alert
 import com.example.weatherforecastapp.databinding.AlertItemBinding
 
-class AlertAdapter(val alerts: ArrayList<Alert>, val context: Context) :
+class AlertAdapter(val alerts: List<Alert>, val context: Context,val alertOnClickListener: AlertOnClickListener) :
     RecyclerView.Adapter<AlertAdapter.AlertsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlertsViewHolder {
@@ -18,7 +18,11 @@ class AlertAdapter(val alerts: ArrayList<Alert>, val context: Context) :
     override fun onBindViewHolder(holder: AlertsViewHolder, position: Int) {
         val alerts=alerts[position]
         holder.binding.tvItemStartTime.text= alerts.start.toString()
-        //
+        holder.binding.tvEndTime.text=alerts.end.toString()
+
+        holder.binding.ivOption.setOnClickListener {
+            alertOnClickListener.onOptionClicked(alerts)
+        }
     }
 
     override fun getItemCount(): Int {

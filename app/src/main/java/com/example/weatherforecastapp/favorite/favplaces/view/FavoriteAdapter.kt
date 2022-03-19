@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherforecastapp.databinding.FavPlacesItemBinding
 import com.example.weatherforecastapp.favorite.model.Favorite
 
-class FavoriteAdapter(val favorites: List<Favorite>, val context: Context) :
+class FavoriteAdapter(val favorites: List<Favorite>, val context: Context,val favOnClickListener:FavOnClickListener) :
     RecyclerView.Adapter<FavoriteAdapter.FavsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavsViewHolder {
@@ -24,6 +24,12 @@ class FavoriteAdapter(val favorites: List<Favorite>, val context: Context) :
     override fun onBindViewHolder(holder: FavsViewHolder, position: Int) {
         val model = favorites[position]
         holder.binding.tvFavPlace.text = model.place
+        holder.binding.ivDelete.setOnClickListener {
+            favOnClickListener.onviewClicked(model)
+        }
+        holder.itemView.setOnClickListener {
+            favOnClickListener.onfavClicked(model)
+        }
     }
 
     override fun getItemCount(): Int {

@@ -3,6 +3,7 @@ package com.example.weatherforecastapp.favorite.viewmodel
 import com.example.weatherforecastapp.data.source.remote.WeatherRemoteSource
 import android.content.Context
 import androidx.lifecycle.*
+import com.example.weatherforecastapp.alerts.model.Alert
 import com.example.weatherforecastapp.data.source.Repository
 import com.example.weatherforecastapp.data.source.local.ConcretLocalSource
 import com.example.weatherforecastapp.data.source.local.WeatherLocalSource
@@ -41,8 +42,24 @@ class FavViewModel(context : Context) : ViewModel(), WeatherRemoteSource, Weathe
         repo.deleteFav(favorite)
     }
 
+//    override fun insertAlert(alert: Alert) {
+//        TODO("Not yet implemented")
+//    }
+//
+//    override fun deleteAlert(alert: Alert) {
+//        TODO("Not yet implemented")
+//    }
+//
+//    override fun updateAlert(alert: Alert) {
+//        TODO("Not yet implemented")
+//    }
+//
+//    override fun getAllAlerts(): LiveData<List<Alert>> {
+//        TODO("Not yet implemented")
+//    }
+
 
     override suspend fun getCurrentWeather(model: Forecast) {
-        TODO("Not yet implemented")
+
     }
 }

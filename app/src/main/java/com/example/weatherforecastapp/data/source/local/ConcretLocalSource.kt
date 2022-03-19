@@ -2,6 +2,7 @@ package com.example.weatherforecastapp.data.source.local
 
 import android.content.Context
 import androidx.lifecycle.LiveData
+import com.example.weatherforecastapp.alerts.model.Alert
 import com.example.weatherforecastapp.favorite.model.Favorite
 
 class ConcretLocalSource( context: Context) :
@@ -28,4 +29,20 @@ class ConcretLocalSource( context: Context) :
     override fun deleteFav(favorite: Favorite) {
         weatherDAO.deleteFav(favorite)
     }
+
+//    override fun insertAlert(alert: Alert) {
+//       //weatherDAO.insertAlert(alert)
+//    }
+//
+//    override fun deleteAlert(alert: Alert) {
+//       //weatherDAO.deleteAlert(alert)
+//    }
+//
+//    override fun updateAlert(alert: Alert) {
+//        TODO("Not yet implemented")
+//    }
+//
+//    override fun getAllAlerts(): LiveData<List<Alert>> {
+//        TODO("Not yet implemented")
+//    }
 }

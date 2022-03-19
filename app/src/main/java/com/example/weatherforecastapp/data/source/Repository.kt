@@ -2,6 +2,7 @@ package com.example.weatherforecastapp.data.source
 
 import android.content.Context
 import androidx.lifecycle.LiveData
+import com.example.weatherforecastapp.alerts.model.Alert
 import com.example.weatherforecastapp.data.source.local.WeatherLocalSource
 import com.example.weatherforecastapp.data.source.remote.RetrofitFactory
 import com.example.weatherforecastapp.data.source.remote.RetrofitService
@@ -34,8 +35,8 @@ class Repository(
         context: Context,
         lat: Double,
         lon: Double,
-        lang: String="en",
-        unit: String="imperial"
+        lang: String = "en",
+        unit: String = "imperial"
     ) {
         CoroutineScope(Dispatchers.IO).launch {
             val weatherCall = RetrofitFactory.getInstance().create(RetrofitService::class.java)
@@ -57,9 +58,22 @@ class Repository(
             localSource.insertToFav(favorite)
         }
     }
-        fun deleteFav(favorite: Favorite){
-            CoroutineScope(Dispatchers.IO).launch {
-                localSource.deleteFav(favorite)
-            }
+
+    fun deleteFav(favorite: Favorite) {
+        CoroutineScope(Dispatchers.IO).launch {
+            localSource.deleteFav(favorite)
         }
+    }
+
+    fun deleteAlert(alert: Alert) {
+        localSource.deleteAlert(alert)
+    }
+
+    fun insertAlert(alert: Alert) {
+        localSource.insertAlert(alert)
+    }
+
+    fun getAllAlerts(): LiveData<List<Alert>> {
+        return localSource.getAllAlerts()
+    }
 }

@@ -16,6 +16,8 @@ import com.example.weatherforecastapp.databinding.FragmentFavBinding
 import com.example.weatherforecastapp.favorite.model.Favorite
 import com.example.weatherforecastapp.favorite.viewmodel.FavViewModel
 import com.example.weatherforecastapp.favorite.viewmodel.FavViewModelFactory
+import com.example.weatherforecastapp.utils.Constant
+import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.material.snackbar.Snackbar
 
@@ -45,12 +47,7 @@ class FavFragment : Fragment(), FavOnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentFavBinding.inflate(LayoutInflater.from(context), container, false)
-        favViewModel.getAllFavs()
-        favViewModel.favliveData.observe(requireActivity()) {
-            favorits = it
-            Log.e("TAG","size:${favorits.size}")
-            setUpRecyclerView()
-        }
+
 
 
         //return  inflater.inflate(R.layout.fragment_fav, container, false)
@@ -61,14 +58,14 @@ class FavFragment : Fragment(), FavOnClickListener {
         val layoutManager = LinearLayoutManager(requireActivity())
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.rvFavPlaces.layoutManager = layoutManager
-        favoriteAdapter = FavoriteAdapter(favorits, requireContext())
+        favoriteAdapter = FavoriteAdapter(favorits, requireContext(), this)
         binding.rvFavPlaces.adapter = favoriteAdapter
     }
 
     //==========================================
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-//        this.context?.let { Places.initialize(it, Constant.apiPlaces2) }
+//        this.context?.let { Places.initialize(it, Constant.apiPlaces) }
 //        this.context?.let { placesClient = Places.createClient(it) }
         //autoCompleteSearch()
     }
@@ -76,11 +73,33 @@ class FavFragment : Fragment(), FavOnClickListener {
     //========================================
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        favViewModel.getAllFavs()
+        favViewModel.getAllFavs().observe(requireActivity()) {
+            favorits = it
+            Log.e("TAG", "size:${favorits.size}")
+            setUpRecyclerView()
+            checkEmptyList()
+        }
         binding.fabAddPlace.setOnClickListener { view ->
             if (view != null) {
                 Navigation.findNavController(view)
                     .navigate(R.id.action_favFragment_to_mapsFragment)
             }
+
+        }
+
+    }
+
+    //=========================================
+    private fun checkEmptyList() {
+        if (favorits.isEmpty()) {
+            binding.ivFavEmpty.visibility = View.VISIBLE
+            binding.tvFavEmpty.visibility = View.VISIBLE
+            binding.rvFavPlaces.visibility = View.GONE
+        } else {
+            binding.ivFavEmpty.visibility = View.GONE
+            binding.rvFavPlaces.visibility = View.VISIBLE
+            binding.tvFavEmpty.visibility = View.GONE
         }
     }
 
@@ -90,19 +109,20 @@ class FavFragment : Fragment(), FavOnClickListener {
         val bundle = Bundle()
         bundle.putSerializable("favs", favorite)
         Navigation.findNavController(requireView())
-            .navigate(R.id.action_favFragment_to_favWeatherFragment,bundle)
+            .navigate(R.id.action_favFragment_to_favWeatherFragment, bundle)
     }
-
+    //====================================================
     override fun onviewClicked(favorite: Favorite) {
         favViewModel.deleteFav(favorite)
         showSnackBar(favorite)
+        checkEmptyList()
         favoriteAdapter.notifyDataSetChanged()
     }
 
     private fun showSnackBar(favorite: Favorite) {
         val snackbar = Snackbar.make(binding.favLayout, "Removed from Fav!", Snackbar.LENGTH_LONG)
-        snackbar.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        snackbar.setActionTextColor(ContextCompat.getColor(requireContext(), R.color.purple_200))
+        snackbar.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        snackbar.setActionTextColor(ContextCompat.getColor(requireContext(), R.color.black))
         snackbar.setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.purple_700))
         snackbar.setAction("undo") {
             favViewModel.insertToFav(favorite)
