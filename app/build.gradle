@@ -5,6 +5,7 @@ plugins {
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
     id 'kotlin-parcelize'
     id ("androidx.navigation.safeargs")
+    id 'kotlin-kapt'
 }
 
 android {
@@ -64,9 +65,7 @@ dependencies {
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.13.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
-    //Room
-    implementation "androidx.room:room-runtime:2.4.2"
-    annotationProcessor "androidx.room:room-compiler:2.4.2"
+
     //Navigation
     implementation "androidx.navigation:navigation-fragment:2.4.1"
     implementation "androidx.navigation:navigation-ui:2.4.1"
@@ -90,4 +89,11 @@ dependencies {
     //prefrences
     implementation "androidx.preference:preference-ktx:1.2.0"
     implementation 'com.google.android.material:material:1.5.0'
+    // places
+    implementation 'com.google.android.libraries.places:places:2.5.0'
+    //Room
+    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
+    implementation("androidx.room:room-ktx:2.4.2")
+    // To use Kotlin annotation processing tool (kapt)
+    kapt("androidx.room:room-compiler:2.4.2")
 }

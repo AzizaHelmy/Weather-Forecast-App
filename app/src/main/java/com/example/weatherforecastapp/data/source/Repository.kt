@@ -1,12 +1,12 @@
 package com.example.weatherforecastapp.data.source
 
-import WeatherRemoteSource
 import android.content.Context
 import androidx.lifecycle.LiveData
 import com.example.weatherforecastapp.data.source.local.WeatherLocalSource
 import com.example.weatherforecastapp.data.source.remote.RetrofitFactory
 import com.example.weatherforecastapp.data.source.remote.RetrofitService
-import com.example.weatherforecastapp.home.model.Forecast
+import com.example.weatherforecastapp.data.source.remote.WeatherRemoteSource
+import com.example.weatherforecastapp.favorite.model.Favorite
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -30,11 +30,13 @@ class Repository(
 //        }
 //    }
 
-    fun getCurrentWeather(context: Context,
-                          lat: Double,
-                          lon: Double,
-                          lang: String,
-                          unit: String) {
+    fun getCurrentWeather(
+        context: Context,
+        lat: Double,
+        lon: Double,
+        lang: String="en",
+        unit: String="imperial"
+    ) {
         CoroutineScope(Dispatchers.IO).launch {
             val weatherCall = RetrofitFactory.getInstance().create(RetrofitService::class.java)
             val response = weatherCall.getCurrentWeatherByLatAndLon(lat, lon, lang, unit)
@@ -46,7 +48,18 @@ class Repository(
         }
     }
 
-//    fun getFavs(): LiveData<List<Forecast>> {
-//        return localSource.getAllFavs()
-//    }
+    fun getFavs(): LiveData<List<Favorite>> {
+        return localSource.getAllFavs()
+    }
+
+    fun insertFav(favorite: Favorite) {
+        CoroutineScope(Dispatchers.IO).launch {
+            localSource.insertToFav(favorite)
+        }
+    }
+        fun deleteFav(favorite: Favorite){
+            CoroutineScope(Dispatchers.IO).launch {
+                localSource.deleteFav(favorite)
+            }
+        }
 }

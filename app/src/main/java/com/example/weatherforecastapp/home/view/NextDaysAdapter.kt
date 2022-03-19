@@ -33,7 +33,7 @@ class NextDaysAdapter(private val daily: List<Daily>, val context: Context) :
         when (icon) {
             "01d" -> holder.binding.ivNext7day.setImageResource(R.drawable.sun)
             "02d" -> holder.binding.ivNext7day.setImageResource(R.drawable.icon2)
-            "03d" -> holder.binding.ivNext7day.setImageResource(R.drawable.icon3)
+            "03d" -> holder.binding.ivNext7day.setImageResource(R.drawable.sun)
             "04d" -> holder.binding.ivNext7day.setImageResource(R.drawable.icon4)
             "09d" -> holder.binding.ivNext7day.setImageResource(R.drawable.storm)
             "10d" -> holder.binding.ivNext7day.setImageResource(R.drawable.few_cloud)

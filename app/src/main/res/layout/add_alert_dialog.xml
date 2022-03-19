@@ -15,8 +15,7 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_gravity="end"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="19dp"
+        android:layout_margin="19dp"
         android:elevation="10dp"
         android:src="@drawable/close1" />
 
@@ -24,14 +23,14 @@
         android:id="@+id/my_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="57dp"
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ti_description_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="13dp"
             android:background="#FBFBF4"
             app:hintTextColor="#FBFBF4">
 
@@ -64,7 +63,7 @@
             android:id="@+id/ti_date_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="13dp"
             android:background="#FBFBF4"
             android:padding="5dp"
             app:hintTextColor="#FBFBF4">
@@ -240,7 +239,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="21dp"
-            android:background="@drawable/card_fav"
+            android:background="@drawable/card_item"
             android:text="add Alert" />
 
 

@@ -15,7 +15,7 @@
     <string name="wind_speed">سرعه الرياح</string>
     <string name="pressure">الضغط</string>
     <string name="clouds">السحب</string>
-    <string name="hourly_forecast">Hourly Forecast</string>
+    <string name="hourly_forecast">الساعات القادمه</string>
     <string name="next_7_days">السبعه الايام القادمه</string>
     <string name="time">02:00</string>
     <string name="today">اليوم</string>

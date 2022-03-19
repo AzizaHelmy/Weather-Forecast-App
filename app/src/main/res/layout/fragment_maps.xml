@@ -11,7 +11,7 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".map.MapsFragment" />
+        tools:context=".map.view.MapsFragment" />
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -67,6 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="13dp"
                 android:text="Giza/Haram"
+                android:textSize="23sp"
                 android:visibility="visible"
                 app:layout_constraintBottom_toTopOf="@+id/butt_add"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -79,7 +80,7 @@
                 android:layout_marginBottom="13dp"
                 android:padding="9dp"
                 android:text="Giza"
-                android:textSize="21sp"
+                android:textSize="23sp"
                 android:visibility="visible"
                 app:layout_constraintBottom_toTopOf="@id/tv_country"
                 app:layout_constraintEnd_toEndOf="@+id/tv_country"

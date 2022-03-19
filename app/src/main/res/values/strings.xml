@@ -33,4 +33,5 @@
     <string name="system_theme_description">System default</string>
     <string name="dark_theme_description">Dark</string>
     <string name="light_theme_description">Light</string>
+
 </resources>

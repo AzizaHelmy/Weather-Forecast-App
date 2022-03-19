@@ -2,52 +2,51 @@ package com.example.weatherforecastapp.home.view
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.Context
-import android.content.Context.LOCATION_SERVICE
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.LocationManager
-
 import android.os.Build
 import android.os.Bundle
-import android.provider.Settings
+import com.example.weatherforecastapp.R
 import android.os.Looper
-import com.google.android.gms.location.LocationRequest
+import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.weatherforecastapp.R
 import com.example.weatherforecastapp.databinding.FragmentHomeBinding
 import com.example.weatherforecastapp.home.model.Hourly
 import com.example.weatherforecastapp.home.viewmodel.WeatherViewModel
-import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationResult
-import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.*
 import java.text.SimpleDateFormat
 import java.util.*
 
+
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
-
     private lateinit var hoursAdapter: HoursAdapter
     private lateinit var hours: List<Hourly>
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var yourLocationLat: Double = 0.0
     private var yourLocationLon: Double = 0.0
+    private lateinit var units: String
+    private lateinit var language: String
+
     companion object {
         private const val PERMISSINO_ID = 0
     }
+
     //KTX
     private val weatherViewModel: WeatherViewModel by viewModels()
 
@@ -55,19 +54,27 @@ class HomeFragment : Fragment() {
         override fun onLocationResult(locationResult: LocationResult) {
             super.onLocationResult(locationResult)
             yourLocationLat = locationResult.lastLocation.altitude
-           yourLocationLon = locationResult.lastLocation.latitude
+            yourLocationLon = locationResult.lastLocation.latitude
+
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadSettings()
-
+//        val pressedCallback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
+//            override fun handleOnBackPressed() {
+//                findNavController(view!!).navigate()
+//            }
+//        }
+//        requireActivity().onBackPressedDispatcher.addCallback(this, pressedCallback)
     }
+
 
     private fun loadSettings() {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        val units = sharedPreferences.getString("unit", "")
-        val language = sharedPreferences.getString("language", "ar")
+        units = sharedPreferences.getString("unit", "")!!
+        language = sharedPreferences.getString("language", "ar")!!
         val locationUsingGps = sharedPreferences.getBoolean("USE_DEVICE_LOCATION", true)
 
     }
@@ -81,10 +88,10 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(LayoutInflater.from(context), container, false)
         weatherViewModel.getData(
             requireContext(),
-            yourLocationLat,
-            yourLocationLon,
-            "ar",
-            "metric"
+            30.621175336675805,
+            32.26823826304946,
+            language,
+            "imperial"
         )
         weatherViewModel.liveData.observe(requireActivity()) {
             val weather = it
@@ -122,17 +129,26 @@ class HomeFragment : Fragment() {
         country: String,
         icon: String
     ) {
+//        val geocoder = Geocoder(context, Locale.getDefault())
+//        val address: List<Address> = geocoder.getFromLocation(yourLocationLat,yourLocationLon, 1)
+//        val cityName: String = address[0].getAddressLine(0)
+//        val stateName: String = address[0].getAddressLine(1)
+//        val countryName: String = address[0].getAddressLine(2)
+
         binding.tvTempreture.text = temp
         binding.tvDiscription.text = description
         binding.tvHumidityTemp.text = "$humidity %"
         binding.tvPressureUnit.text = "$pressure hpa"
         binding.tvWindSpeedUnit.text = "$windSpeed m/s"
         binding.tvCloudsUnit.text = "$clouds %"
+        if ( temp.toInt()>32){
+            binding.tvUnit.text="F"
+        }
         binding.tvCountry.text = country
         when (icon) {
             "01d" -> binding.ivIcon.setImageResource(R.drawable.icon1)
             "02d" -> binding.ivIcon.setImageResource(R.drawable.icon2)
-            "03d" -> binding.ivIcon.setImageResource(R.drawable.icon3)
+            "03d" -> binding.ivIcon.setImageResource(R.drawable.sun)
             "04d" -> binding.ivIcon.setImageResource(R.drawable.icon4)
             "09d" -> binding.ivIcon.setImageResource(R.drawable.storm)
             "10d" -> binding.ivIcon.setImageResource(R.drawable.few_cloud)
@@ -170,19 +186,21 @@ class HomeFragment : Fragment() {
 
         getMyLocation()
     }
-  //=========================================================
-        @SuppressLint("MissingPermission")
+
+    //=========================================================
+    @SuppressLint("MissingPermission")
     private fun getMyLocation() {
         if (checkPermissions()) {
             if (isLocationEnabled()) {
 
-             val locationRequest = LocationRequest()
-                locationRequest.priority =LocationRequest.PRIORITY_HIGH_ACCURACY
+                val locationRequest = LocationRequest()
+                locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
                 locationRequest.interval = 0
                 locationRequest.fastestInterval = 0
                 locationRequest.numUpdates = 1
 
-                fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
+                fusedLocationClient =
+                    LocationServices.getFusedLocationProviderClient(requireContext())
                 fusedLocationClient.requestLocationUpdates(
                     locationRequest, locationCallback,
                     Looper.myLooper()!!
@@ -200,11 +218,13 @@ class HomeFragment : Fragment() {
 
     //============================================
     private fun isLocationEnabled(): Boolean {
-        val locationManager = context?.getSystemService(AppCompatActivity.LOCATION_SERVICE) as LocationManager
+        val locationManager =
+            context?.getSystemService(AppCompatActivity.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
             LocationManager.NETWORK_PROVIDER
         )
     }
+
     //=============================================
     private fun checkPermissions(): Boolean {
         if (ActivityCompat.checkSelfPermission(
@@ -220,7 +240,8 @@ class HomeFragment : Fragment() {
         }
         return false
     }
-   //==============================================
+
+    //==============================================
     fun requestPermisssion() {
         ActivityCompat.requestPermissions(
             requireActivity(),
@@ -230,13 +251,14 @@ class HomeFragment : Fragment() {
             ), PERMISSINO_ID
         )
     }
-   //==============================================
+
+    //==============================================
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
         grantResults: IntArray
     ) {
-        if (requestCode ==PERMISSINO_ID) {
+        if (requestCode == PERMISSINO_ID) {
             if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                 //getLastLocation()
             }

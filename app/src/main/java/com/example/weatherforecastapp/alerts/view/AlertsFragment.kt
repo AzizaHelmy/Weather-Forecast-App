@@ -9,8 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.example.weatherforecastapp.alerts.viewmodel.AlertViewModel
 import com.example.weatherforecastapp.databinding.AddAlertDialogBinding
 import com.example.weatherforecastapp.databinding.FragmentAlertsBinding
+import com.example.weatherforecastapp.favorite.viewmodel.FavViewModel
+import com.example.weatherforecastapp.favorite.viewmodel.FavViewModelFactory
 import java.util.*
 
 class AlertsFragment : Fragment() {
@@ -19,6 +23,11 @@ class AlertsFragment : Fragment() {
     private lateinit var bindingDialog: AddAlertDialogBinding
     private lateinit var dialog: AlertDialog
     private lateinit var mTimePicker: TimePickerDialog
+    private lateinit var alertAdapter: AlertAdapter
+    //KTX
+    private val alertViewModel by viewModels<AlertViewModel>()
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

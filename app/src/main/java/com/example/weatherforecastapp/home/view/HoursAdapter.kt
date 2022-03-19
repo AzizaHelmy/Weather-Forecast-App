@@ -35,7 +35,7 @@ class HoursAdapter(private val hours: List<Hourly>, val context: Context) :
         when (icon) {
             "01d" -> holder.binding.ivHourIcon.setImageResource(R.drawable.sun)
             "02d" -> holder.binding.ivHourIcon.setImageResource(R.drawable.icon2)
-            "03d" -> holder.binding.ivHourIcon.setImageResource(R.drawable.icon3)
+            "03d" -> holder.binding.ivHourIcon.setImageResource(R.drawable.sun)
             "04d" -> holder.binding.ivHourIcon.setImageResource(R.drawable.icon4)
             "09d" -> holder.binding.ivHourIcon.setImageResource(R.drawable.storm)
             "10d" -> holder.binding.ivHourIcon.setImageResource(R.drawable.few_cloud)

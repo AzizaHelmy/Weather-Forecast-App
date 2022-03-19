@@ -16,7 +16,9 @@ class AlertAdapter(val alerts: ArrayList<Alert>, val context: Context) :
     }
 
     override fun onBindViewHolder(holder: AlertsViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val alerts=alerts[position]
+        holder.binding.tvItemStartTime.text= alerts.start.toString()
+        //
     }
 
     override fun getItemCount(): Int {

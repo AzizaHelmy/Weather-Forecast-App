@@ -2,10 +2,12 @@ package com.example.weatherforecastapp.data.source.local
 
 import android.content.Context
 import androidx.room.*
+import com.example.weatherforecastapp.alerts.model.Alert
+import com.example.weatherforecastapp.favorite.model.Favorite
 import com.example.weatherforecastapp.home.model.Forecast
 import com.example.weatherforecastapp.utils.Converters
 
-//@Database(entities = [Forecast::class], version = 1, exportSchema = false)
+@Database(entities = [Favorite::class,Alert::class], version = 1, exportSchema = false)
 @TypeConverters(value = [Converters::class])
 
 abstract class WeatherDB : RoomDatabase() {

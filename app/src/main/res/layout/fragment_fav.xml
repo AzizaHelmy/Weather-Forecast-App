@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/fav_layout"
     android:layout_height="match_parent"
     android:background="#DAD5D5"
     tools:context=".alerts.view.AlertsFragment">
@@ -12,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="13dp"
-        tools:context=".favorite.view.FavFragment">
+        tools:context=".favorite.favplaces.view.FavFragment">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_add_place"
@@ -26,13 +27,28 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:tint="@color/white" />
 
-        <SearchView
-            android:id="@+id/search"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:background="#EDE8E8"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="11dp"
+            android:layout_margin="9dp"
+            android:id="@+id/card"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+<!--            <fragment-->
+<!--                android:id="@+id/autocomplete_fragment"-->
+<!--                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:padding="7dp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+        </com.google.android.material.card.MaterialCardView>
+
 
         <ImageView
             android:id="@+id/iv_fav_empty"
@@ -50,8 +66,8 @@
             android:layout_width="match_parent"
             android:layout_height="706dp"
             android:background="#DAD5D5"
-            app:layout_constraintStart_toStartOf="@id/search"
-            app:layout_constraintTop_toBottomOf="@id/search"
+            app:layout_constraintStart_toStartOf="@id/card"
+            app:layout_constraintTop_toBottomOf="@id/card"
             tools:listitem="@layout/fav_places_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

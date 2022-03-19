@@ -1,13 +1,14 @@
 package com.example.weatherforecastapp.home.viewmodel
 
 
-import WeatherRemoteSource
+import com.example.weatherforecastapp.data.source.remote.WeatherRemoteSource
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.weatherforecastapp.data.source.Repository
 import com.example.weatherforecastapp.data.source.local.WeatherLocalSource
+import com.example.weatherforecastapp.favorite.model.Favorite
 import com.example.weatherforecastapp.home.model.Forecast
 
 //private val repositoryInterface: RepositoryInterface
@@ -28,11 +29,19 @@ import com.example.weatherforecastapp.home.model.Forecast
         repo.getCurrentWeather(context,lat,lon,lang,unit)
     }
 
-    override suspend fun getWeatherOfFavPlace(favorite: Forecast) {
+    override suspend fun getWeatherOfFavPlace(favorite: Favorite) {
         TODO("Not yet implemented")
     }
 
-    override fun getAllFavs(): LiveData<List<Forecast>> {
+    override fun getAllFavs(): LiveData<List<Favorite>> {
         TODO("Not yet implemented")
+    }
+
+    override fun insertToFav(favorite: Favorite) {
+
+    }
+
+    override fun deleteFav(favorite: Favorite) {
+
     }
 }

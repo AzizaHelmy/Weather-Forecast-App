@@ -24,11 +24,13 @@
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/fav_places_item.xml" value="0.2" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/fragment_alerts.xml" value="0.18" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/fragment_fav.xml" value="0.20416666666666666" />
+        <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/fragment_fav_weather.xml" value="0.20416666666666666" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/fragment_home.xml" value="0.18" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/fragment_maps.xml" value="0.20416666666666666" />
-        <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/fragment_next_days.xml" value="0.20416666666666666" />
+        <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/fragment_next_days.xml" value="0.12727272727272726" />
+        <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/fragment_splash.xml" value="0.20416666666666666" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/hours_item.xml" value="0.1675213675213675" />
-        <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/next_day_item.xml" value="0.25" />
+        <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/next_day_item.xml" value="0.11244979919678715" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/test_home.xml" value="0.1" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/test_item.xml" value="0.20416666666666666" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/menu/nav_menu.xml" value="0.20416666666666666" />

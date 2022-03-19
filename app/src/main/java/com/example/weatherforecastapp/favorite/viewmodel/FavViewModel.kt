@@ -1,24 +1,44 @@
 package com.example.weatherforecastapp.favorite.viewmodel
 
-import WeatherRemoteSource
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.example.weatherforecastapp.data.source.remote.WeatherRemoteSource
+import android.content.Context
+import androidx.lifecycle.*
 import com.example.weatherforecastapp.data.source.Repository
+import com.example.weatherforecastapp.data.source.local.ConcretLocalSource
 import com.example.weatherforecastapp.data.source.local.WeatherLocalSource
+import com.example.weatherforecastapp.favorite.model.Favorite
 import com.example.weatherforecastapp.home.model.Forecast
+import kotlinx.coroutines.launch
 
-class FavViewModel :ViewModel(),WeatherRemoteSource,WeatherLocalSource{
-    private var favMutableLiveData= MutableLiveData<Forecast>()
-    val favliveData:LiveData<Forecast> = favMutableLiveData
+class FavViewModel(context : Context) : ViewModel(), WeatherRemoteSource, WeatherLocalSource {
+    private var favMutableLiveData = MutableLiveData<List<Favorite>>()
+    val favliveData: LiveData<List<Favorite>> = favMutableLiveData
+    private var mutableLiveData = MutableLiveData<Forecast>()
+    var liveData: LiveData<Forecast> = mutableLiveData
 
-    var repo = Repository(this,this)
-    override suspend fun getWeatherOfFavPlace(favorite: Forecast) {
-      return favMutableLiveData.postValue(favorite)
+    val concretLocalSource: ConcretLocalSource = ConcretLocalSource( context )
+    var repo = Repository(this, concretLocalSource)
+
+    fun getData(context: Context, lat:Double, lon:Double) {
+        repo.getCurrentWeather(context,lat,lon)
     }
 
-    override fun getAllFavs(): LiveData<List<Forecast>> {
-        TODO("Not yet implemented")
+    override suspend fun getWeatherOfFavPlace(favorite: Favorite) {
+
+    }
+
+    override fun getAllFavs(): LiveData<List<Favorite>> {
+        return repo.getFavs()
+    }
+
+    override fun insertToFav(favorite: Favorite) {
+        viewModelScope.launch {
+            repo.insertFav(favorite)
+        }
+    }
+
+    override fun deleteFav(favorite: Favorite) {
+        repo.deleteFav(favorite)
     }
 
 
