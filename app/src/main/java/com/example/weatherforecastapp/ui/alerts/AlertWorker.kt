@@ -34,12 +34,12 @@ class AlertWorker(context: Context, workerParameters: WorkerParameters) :
 
         val alertResult = repo.isWeatherAlert(lat, lng)
 
-        if (alertResult) {
+        //if (alertResult) {
             createNotificationChannal()
-            sendNotification(type.toString())
-        } else {
+            sendNotification("Be Careful !")
+        //} else {
             Log.i("TAG", "doWork: Fail !!")
-        }
+       // }
         return Result.success()
     }
 

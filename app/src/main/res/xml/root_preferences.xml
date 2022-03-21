@@ -44,6 +44,7 @@
         android:title="@string/notification"
         app:icon="@drawable/ic_notifications">
         <SwitchPreference
+            android:defaultValue="true"
             android:key="notification_prefrence_key"
             android:summary="@string/notificaion_description"
             android:title="@string/notification" />

@@ -4,25 +4,32 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.work.*
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.example.weatherforecastapp.R
 import com.example.weatherforecastapp.databinding.AddAlertDialogBinding
 import com.example.weatherforecastapp.databinding.FragmentAlertsBinding
 import com.example.weatherforecastapp.ui.alerts.AlertWorker
 import com.example.weatherforecastapp.ui.alerts.model.Alert
 import com.example.weatherforecastapp.ui.alerts.viewmodel.AlertViewModel
+import com.example.weatherforecastapp.utils.DateTime
 import com.google.android.material.snackbar.Snackbar
+import java.time.Duration
+import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -59,14 +66,15 @@ class AlertsFragment : Fragment(), AlertOnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAlertsBinding.inflate(LayoutInflater.from(context), container, false)
-        if(parentFragment !=null){
-           container?.removeAllViews()
+        if (parentFragment != null) {
+            container?.removeAllViews()
         }
         bindingDialog =
             AddAlertDialogBinding.inflate(LayoutInflater.from(context), container, false)
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -78,7 +86,7 @@ class AlertsFragment : Fragment(), AlertOnClickListener {
         }
         binding.fabAddAlert.setOnClickListener {
             //Navigation.findNavController(view).navigate(R.id.action_alertsFragment_to_dialoge)
-              showAddAlertDialoge()
+            showAddAlertDialoge()
         }
         bindingDialog.ivClose.setOnClickListener { dialog.dismiss() }
         bindingDialog.tvStartDate.setOnClickListener {
@@ -121,7 +129,7 @@ class AlertsFragment : Fragment(), AlertOnClickListener {
             mTimePicker = TimePickerDialog(
                 requireContext(),
                 { view, hourOfDay, minute ->
-                    bindingDialog.tvStartTime.text = String.format("%d : %d ", hourOfDay, minute )
+                    bindingDialog.tvStartTime.text = String.format("%d : %d ", hourOfDay, minute)
                     startTime =
                         (TimeUnit.MINUTES.toSeconds(minute.toLong()) + TimeUnit.HOURS.toSeconds(hour.toLong()))
                 }, hour, minute, false
@@ -147,24 +155,42 @@ class AlertsFragment : Fragment(), AlertOnClickListener {
         }
 
         bindingDialog.addAlertBtn.setOnClickListener {
-            val alert = Alert("", bindingDialog.tvStartDate.text.toString(), bindingDialog.tvEndDate.text.toString(), bindingDialog.tvStartTime.text.toString(), bindingDialog.tvEndTime.text.toString())
+            val alert = Alert(
+                "",
+                bindingDialog.tvStartDate.text.toString(),
+                bindingDialog.tvEndDate.text.toString(),
+                bindingDialog.tvStartTime.text.toString(),
+                bindingDialog.tvEndTime.text.toString()
+            )
             alertViewModel.insertAlert(alert)
             checkEmptyList()
-             setWorker()
+            setWorker()
+            dialog.cancel()
             dialog.dismiss()
         }
     }
 
     //==========================================
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun setWorker() {
+        val currentTime = DateTime.getCurrentTime()
 
-        val periodicWorkRequest = PeriodicWorkRequest.Builder(AlertWorker::class.java, 24, TimeUnit.HOURS)
-            .setInputData(Data.Builder()
-                    .putLong("alertTime", startTime)
-                    .putString("alertName", "Alert")
-                    .build()).build()
-        WorkManager.getInstance(requireContext()).enqueue(periodicWorkRequest)
+
+        val calendar: Calendar = Calendar.getInstance()
+        val nowMillis = calendar.timeInMillis
+
+        val timeAt: LocalDateTime = LocalDate.now().atTime(20, 0)
+        val timeNow: LocalDateTime = LocalDateTime.now()
+
+        val difference = startTime - nowMillis
+
+        val oneTimeRequest = OneTimeWorkRequestBuilder<AlertWorker>()
+            .setInitialDelay(difference, TimeUnit.MILLISECONDS)
+            //.setInitialDelay(Duration.between(timeNow, timeAt))
+            .build()
+        WorkManager.getInstance(requireContext()).enqueue(oneTimeRequest)
     }
+
     //=============================================
     private fun setUpRecyclerView() {
         val layoutManager = LinearLayoutManager(requireActivity())
@@ -173,6 +199,7 @@ class AlertsFragment : Fragment(), AlertOnClickListener {
         alertAdapter = AlertAdapter(alerts, requireContext(), this)
         binding.rvAlerts.adapter = alertAdapter
     }
+
     //================================================
     private fun showTimePicker(): Pair<Int, Int> {
         val mcurrentTime = Calendar.getInstance()
@@ -180,6 +207,7 @@ class AlertsFragment : Fragment(), AlertOnClickListener {
         val minute = mcurrentTime.get(Calendar.MINUTE)
         return Pair(hour, minute)
     }
+
     //===================================================================
     private fun showAddAlertDialoge() {
         builder = AlertDialog.Builder(requireContext())
@@ -190,6 +218,7 @@ class AlertsFragment : Fragment(), AlertOnClickListener {
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.setCancelable(false)
     }
+
     //===================================================================
     override fun onOptionClicked(alert: Alert) {
         //if need update => call update , call dialoge

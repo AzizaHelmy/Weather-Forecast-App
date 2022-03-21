@@ -1,6 +1,7 @@
 package com.example.weatherforecastapp.utils
 
 import android.annotation.SuppressLint
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -34,6 +35,18 @@ class DateTime {
                 return sdf.format(date)
             }
             return "00:00"
+        }
+
+        fun getCurrentDate():String {
+            val c: Calendar = Calendar.getInstance()
+            return  DateFormat.getDateInstance(DateFormat.DEFAULT).format(c.time)
+        }
+
+        @SuppressLint("SimpleDateFormat")
+        fun getCurrentTime():String{
+            val c: Calendar = Calendar.getInstance()
+            val simpleTimeFormat = SimpleDateFormat("hh:mm")
+            return  simpleTimeFormat.format(c.time)
         }
     }
 }
