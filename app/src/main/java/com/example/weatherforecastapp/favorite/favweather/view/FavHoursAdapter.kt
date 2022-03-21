@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherforecastapp.R
 import com.example.weatherforecastapp.databinding.HoursItemBinding
-import com.example.weatherforecastapp.home.model.Hourly
+import com.example.weatherforecastapp.ui.home.model.Hourly
 import com.example.weatherforecastapp.utils.DateTime
 
 class FavHoursAdapter(private val hours: List<Hourly>, val context: Context) :

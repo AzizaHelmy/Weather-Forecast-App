@@ -8,7 +8,7 @@ import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherforecastapp.R
 import com.example.weatherforecastapp.databinding.NextDayItemBinding
-import com.example.weatherforecastapp.home.model.Daily
+import com.example.weatherforecastapp.ui.home.model.Daily
 import com.example.weatherforecastapp.utils.DateTime
 
 class FavNextDaysAdapter(private val daily: List<Daily>, val context: Context) :

@@ -1,6 +1,6 @@
 package com.example.weatherforecastapp.data.source.remote
 
-import com.example.weatherforecastapp.home.model.Forecast
+import com.example.weatherforecastapp.ui.home.model.Forecast
 import com.example.weatherforecastapp.utils.Constant
 import retrofit2.Response
 import retrofit2.http.GET

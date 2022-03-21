@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#DAD5D5"
-    tools:context=".alerts.view.AlertsFragment">
+    tools:context=".ui.alerts.view.AlertsFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

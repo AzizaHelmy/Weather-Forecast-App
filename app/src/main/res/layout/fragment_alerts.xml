@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/layout_alert"
     android:background="#DAD5D5"
-    tools:context=".alerts.view.AlertsFragment">
+    tools:context=".ui.alerts.view.AlertsFragment">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_main"

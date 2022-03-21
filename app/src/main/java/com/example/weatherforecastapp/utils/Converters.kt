@@ -1,10 +1,10 @@
 package com.example.weatherforecastapp.utils
 
 import androidx.room.TypeConverter
-import com.example.weatherforecastapp.alerts.model.Alert
-import com.example.weatherforecastapp.home.model.Daily
-import com.example.weatherforecastapp.home.model.Hourly
-import com.example.weatherforecastapp.home.model.Minutely
+import com.example.weatherforecastapp.ui.alerts.model.Alert
+import com.example.weatherforecastapp.ui.home.model.Daily
+import com.example.weatherforecastapp.ui.home.model.Hourly
+import com.example.weatherforecastapp.ui.home.model.Minutely
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

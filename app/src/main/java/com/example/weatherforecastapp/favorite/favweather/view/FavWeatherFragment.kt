@@ -18,7 +18,7 @@ import com.example.weatherforecastapp.databinding.FragmentFavWeatherBinding
 import com.example.weatherforecastapp.favorite.model.Favorite
 import com.example.weatherforecastapp.favorite.viewmodel.FavViewModel
 import com.example.weatherforecastapp.favorite.viewmodel.FavViewModelFactory
-import com.example.weatherforecastapp.home.model.Hourly
+import com.example.weatherforecastapp.ui.home.model.Hourly
 import java.text.SimpleDateFormat
 import java.util.*
 

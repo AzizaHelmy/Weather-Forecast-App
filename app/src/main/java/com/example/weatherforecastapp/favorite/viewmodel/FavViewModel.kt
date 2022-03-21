@@ -3,12 +3,12 @@ package com.example.weatherforecastapp.favorite.viewmodel
 import com.example.weatherforecastapp.data.source.remote.WeatherRemoteSource
 import android.content.Context
 import androidx.lifecycle.*
-import com.example.weatherforecastapp.alerts.model.Alert
+import com.example.weatherforecastapp.ui.alerts.model.Alert
 import com.example.weatherforecastapp.data.source.Repository
 import com.example.weatherforecastapp.data.source.local.ConcretLocalSource
 import com.example.weatherforecastapp.data.source.local.WeatherLocalSource
 import com.example.weatherforecastapp.favorite.model.Favorite
-import com.example.weatherforecastapp.home.model.Forecast
+import com.example.weatherforecastapp.ui.home.model.Forecast
 import kotlinx.coroutines.launch
 
 class FavViewModel(context : Context) : ViewModel(), WeatherRemoteSource, WeatherLocalSource {

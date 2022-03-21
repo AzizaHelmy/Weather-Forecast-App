@@ -10,8 +10,8 @@ import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherforecastapp.databinding.FragmentNextDaysBinding
 import com.example.weatherforecastapp.favorite.model.Favorite
-import com.example.weatherforecastapp.home.model.Daily
-import com.example.weatherforecastapp.home.viewmodel.WeatherViewModel
+import com.example.weatherforecastapp.ui.home.model.Daily
+import com.example.weatherforecastapp.ui.home.viewmodel.WeatherViewModel
 import kotlinx.coroutines.Job
 
 class FavNextDaysFragment : Fragment() {

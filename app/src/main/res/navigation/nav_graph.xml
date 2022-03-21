@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/alertsFragment">
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.weatherforecastapp.home.view.HomeFragment"
+        android:name="com.example.weatherforecastapp.ui.home.view.HomeFragment"
         android:label="Weather"
         tools:layout="@layout/fragment_home" >
         <action
@@ -40,16 +40,19 @@
     </fragment>
     <fragment
         android:id="@+id/alertsFragment"
-        android:name="com.example.weatherforecastapp.alerts.view.AlertsFragment"
+        android:name="com.example.weatherforecastapp.ui.alerts.view.AlertsFragment"
         android:label="Alerts"
         tools:layout="@layout/fragment_alerts" >
         <action
             android:id="@+id/action_alertsFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_alertsFragment_to_dialoge"
+            app:destination="@id/dialoge" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.weatherforecastapp.settings.SettingsFragment"
+        android:name="com.example.weatherforecastapp.ui.settings.SettingsFragment"
         android:label="Settings" >
         <action
             android:id="@+id/action_settingsFragment_to_mapsFragment"
@@ -65,7 +68,7 @@
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
-        android:name="com.example.weatherforecastapp.map.MapsFragment"
+        android:name="com.example.weatherforecastapp.ui.map.MapsFragment"
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" >
         <action
@@ -82,12 +85,12 @@
     </fragment>
     <fragment
         android:id="@+id/nextDaysFragment"
-        android:name="com.example.weatherforecastapp.home.view.NextDaysFragment"
+        android:name="com.example.weatherforecastapp.ui.home.view.NextDaysFragment"
         android:label="fragment_next_days"
         tools:layout="@layout/fragment_next_days" />
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.weatherforecastapp.SplashFragment"
+        android:name="com.example.weatherforecastapp.ui.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -107,4 +110,8 @@
         android:id="@+id/favNextDaysFragment"
         android:name="com.example.weatherforecastapp.favorite.favweather.view.FavNextDaysFragment"
         android:label="FavNextDaysFragment" />
+    <dialog
+        android:id="@+id/dialoge"
+        android:name="com.example.weatherforecastapp.ui.alerts.Dialoge"
+        android:label="Dialoge" />
 </navigation>

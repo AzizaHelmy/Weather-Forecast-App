@@ -1,9 +1,9 @@
 package com.example.weatherforecastapp.data.source
 
 import androidx.lifecycle.LiveData
-import com.example.weatherforecastapp.alerts.model.Alert
+import com.example.weatherforecastapp.ui.alerts.model.Alert
 import com.example.weatherforecastapp.favorite.model.Favorite
-import com.example.weatherforecastapp.home.model.Forecast
+import com.example.weatherforecastapp.ui.home.model.Forecast
 
 interface RepositoryInterface {
 

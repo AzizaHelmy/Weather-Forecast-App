@@ -2,7 +2,7 @@ package com.example.weatherforecastapp.data.source
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import com.example.weatherforecastapp.alerts.model.Alert
+import com.example.weatherforecastapp.ui.alerts.model.Alert
 import com.example.weatherforecastapp.data.source.local.WeatherLocalSource
 import com.example.weatherforecastapp.data.source.remote.RetrofitFactory
 import com.example.weatherforecastapp.data.source.remote.RetrofitService

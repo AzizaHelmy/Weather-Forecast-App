@@ -5,13 +5,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.preference.PreferenceManager
 import com.example.weatherforecastapp.databinding.ActivityMainBinding
 import com.example.weatherforecastapp.utils.Constant
-import com.example.weatherforecastapp.utils.InternetConnection
 import java.util.*
 
 class MainActivity : AppCompatActivity() {

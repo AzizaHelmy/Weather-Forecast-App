@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#ADCEE8"
+    android:background="#C8D5DF"
     android:layout_height="match_parent"
-    tools:context=".SplashFragment">
+    tools:context=".ui.SplashFragment">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_main"

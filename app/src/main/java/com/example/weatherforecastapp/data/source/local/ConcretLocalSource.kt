@@ -2,7 +2,7 @@ package com.example.weatherforecastapp.data.source.local
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import com.example.weatherforecastapp.alerts.model.Alert
+import com.example.weatherforecastapp.ui.alerts.model.Alert
 import com.example.weatherforecastapp.favorite.model.Favorite
 
 class ConcretLocalSource( context: Context) :
