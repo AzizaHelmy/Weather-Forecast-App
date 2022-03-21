@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.*
 import com.example.weatherforecastapp.ui.alerts.model.Alert
 import com.example.weatherforecastapp.favorite.model.Favorite
-import com.example.weatherforecastapp.ui.home.model.Forecast
 import com.example.weatherforecastapp.utils.Converters
 
 @Database(entities = [Favorite::class, Alert::class], version = 2, exportSchema = false)

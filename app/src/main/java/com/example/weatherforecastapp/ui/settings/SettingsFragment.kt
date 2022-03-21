@@ -4,9 +4,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.app.ActivityCompat
 import androidx.navigation.Navigation
 import androidx.preference.*
 import androidx.preference.PreferenceManager.getDefaultSharedPreferences
@@ -14,8 +12,7 @@ import com.example.weatherforecastapp.R
 import com.example.weatherforecastapp.ThemeProvider
 import java.util.*
 
-class SettingsFragment : PreferenceFragmentCompat(),
-    SharedPreferences.OnSharedPreferenceChangeListener {
+class SettingsFragment : PreferenceFragmentCompat() {
 
     var changeLanguage = false
     private lateinit var sharedPreferences: SharedPreferences
@@ -52,10 +49,24 @@ class SettingsFragment : PreferenceFragmentCompat(),
 
     private fun setUnitPreference() {
         val unitPreference = findPreference<ListPreference>("unit")
-          unitPreference?.setOnPreferenceClickListener {
-            if (it.key == "unit") {
+        unitPreference?.setOnPreferenceChangeListener { prefrs, obj ->
+            val items = obj as String
+            when (items) {
+                "METRIC" -> {
+                    editor.putString("unit", "C")
+                    editor.commit()
+                }
+                "IMPERIAL" -> {
+                    editor.putString("unit", "F")
+                    editor.commit()
+                }
+                "STANDARD" -> {
+                    editor.putString("unit", "K")
+                    editor.commit()
+                }
 
             }
+            restartApp()
             true
         }
     }
@@ -64,9 +75,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
         val notifictaio = findPreference<SwitchPreference>("notification_prefrence_key")
         notifictaio?.setOnPreferenceClickListener {
             if (it.key == "notification_prefrence_key") {
-                //view?.findNavController()?.navigate(R.id.alertsFragment)
                 // Navigation.findNavController(requireView()).navigate(R.id.alertsFragment)
-
             }
             true
         }
@@ -79,9 +88,9 @@ class SettingsFragment : PreferenceFragmentCompat(),
             val shared = PreferenceManager.getDefaultSharedPreferences(requireContext())
             if (shared.getBoolean("CUSTOM_LOCATION", true)) {
                 val bundle = Bundle()
-                bundle.putInt("setting",1)
+                bundle.putInt("setting", 1)
                 Navigation.findNavController(requireView())
-                    .navigate(R.id.action_settingsFragment_to_mapsFragment,bundle)
+                    .navigate(R.id.action_settingsFragment_to_mapsFragment, bundle)
             }
             true
         }
@@ -98,7 +107,8 @@ class SettingsFragment : PreferenceFragmentCompat(),
                     "ar" -> setLocale("ar")
                     "en" -> setLocale("en")
                 }
-                //ActivityCompat.recreate(requireActivity())
+
+                restartApp()
             }
             editor.putBoolean("isUpdated", true)
             editor.commit()
@@ -110,7 +120,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
         val locale = Locale(lng)
         Locale.setDefault(locale)
         val config = Configuration()
-        config.locale = locale
+        config.setLocale(locale)
         resources.updateConfiguration(config, resources.displayMetrics)
     }
 
@@ -135,8 +145,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
     override fun onMultiWindowModeChanged(isInMultiWindowMode: Boolean) {
     }
 
-    //===============================================
-    fun restart() {
+    private fun restartApp() {
         val intent = requireActivity().intent
         intent.addFlags(
             Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
@@ -148,25 +157,5 @@ class SettingsFragment : PreferenceFragmentCompat(),
         startActivity(intent)
     }
 
-    //================================================
-    override fun onDestroy() {
-        super.onDestroy()
-       // preferenceScreen.sharedPreferences?.unregisterOnSharedPreferenceChangeListener(this)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-//        preferenceScreen.sharedPreferences?.registerOnSharedPreferenceChangeListener(this)
-//        val pressedCallback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
-//            override fun handleOnBackPressed() {
-//                Navigation.findNavController(view!!).navigate(R.id.homeFragment)
-//            }
-//        }
-//        requireActivity().onBackPressedDispatcher.addCallback(this, pressedCallback)
-    }
-
-    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-
-    }
 
 }

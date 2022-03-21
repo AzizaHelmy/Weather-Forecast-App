@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.weatherforecastapp.ui.alerts.model.Alert
 import com.example.weatherforecastapp.favorite.model.Favorite
-import com.example.weatherforecastapp.ui.home.model.Forecast
 
 @Dao
 interface WeatherDAO {

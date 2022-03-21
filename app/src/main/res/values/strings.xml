@@ -63,6 +63,6 @@
     <string name="theme">Theme</string>
     <string name="app_theme">App Theme</string>
     <string name="no_alerts">No Alerts</string>
-    <string name="no_internet">No Internet</string>
+    <string name="no_internet" translatable="false">No Internet</string>
 
 </resources>

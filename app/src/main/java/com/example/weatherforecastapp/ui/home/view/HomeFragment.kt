@@ -26,19 +26,11 @@ import androidx.navigation.Navigation
 import androidx.preference.Preference
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.android.volley.toolbox.HttpResponse
 import com.example.weatherforecastapp.R
 import com.example.weatherforecastapp.databinding.FragmentHomeBinding
 import com.example.weatherforecastapp.ui.home.model.Hourly
 import com.example.weatherforecastapp.ui.home.viewmodel.WeatherViewModel
-import com.example.weatherforecastapp.utils.Constant
 import com.google.android.gms.location.*
-
-import org.json.JSONException
-import org.json.JSONObject
-
-import java.io.IOException
-import java.io.InputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -168,11 +160,12 @@ class HomeFragment : Fragment() {
 //            val args: Bundle = requireArguments()
 //            val latFromMap = args.getInt("lat")
 //            val lngFromMap = args.getInt("long")
-          //Log.e("TAG","my address ${ getLocationInfo(yourLocationLat,yourLocationLon)}")
-          val address: Address =
-              //geocoder.getFromLocation(30.621175336675805, 32.26823826304946,1).firstOrNull()?:return@observe
-             geocoder.getFromLocation(yourLocationLat, yourLocationLon,1).firstOrNull()?:return@observe
-           //geocoder.getFromLocation(yourLocationLat, yourLocationLon, 1)[0]
+            //Log.e("TAG","my address ${ getLocationInfo(yourLocationLat,yourLocationLon)}")
+            val address: Address =
+                //geocoder.getFromLocation(30.621175336675805, 32.26823826304946,1).firstOrNull()?:return@observe
+                geocoder.getFromLocation(yourLocationLat, yourLocationLon, 1).firstOrNull()
+                    ?: return@observe
+            //geocoder.getFromLocation(yourLocationLat, yourLocationLon, 1)[0]
             val adminArea = address.adminArea
             binding.tvTempreture.text = temp
             binding.tvDiscription.text = description
@@ -180,12 +173,17 @@ class HomeFragment : Fragment() {
             binding.tvPressureUnit.text = "$pressure hpa"
             binding.tvWindSpeedUnit.text = "$windSpeed m/s"
             binding.tvCloudsUnit.text = "$clouds %"
-            if (temp.toInt() > 32) {
+            if (temp.toInt() <= 32) {
+                binding.tvUnit.text = "C"
+                binding.tvWindSpeedUnit.text = "$windSpeed m/s"
+            } else if (temp.toInt() in 33..273) {
                 binding.tvUnit.text = "F"
-            }else{
-                binding.tvUnit.text="C"
+                binding.tvWindSpeedUnit.text = "$windSpeed ms/h"
+            } else {
+                binding.tvUnit.text = "K"
+                binding.tvWindSpeedUnit.text = "$windSpeed m/s"
             }
-            binding.tvCountry.text =adminArea
+            binding.tvCountry.text = adminArea
             when (icon) {
                 "01d" -> binding.ivIcon.setImageResource(R.drawable.sun)
                 "02d" -> binding.ivIcon.setImageResource(R.drawable.few_cloudy)
@@ -231,7 +229,8 @@ class HomeFragment : Fragment() {
                     LocationServices.getFusedLocationProviderClient(requireContext())
                 fusedLocationClient.requestLocationUpdates(
                     locationRequest, locationCallback,
-                    Looper.getMainLooper())
+                    Looper.getMainLooper()
+                )
 //                ).addOnCompleteListener {
 //                    Log.e("TAG","${it.result}")
 //                }

@@ -290,7 +290,7 @@
             android:id="@+id/tv_temp_type_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="C"
+            android:text=""
             android:textSize="27sp"
             app:layout_constraintStart_toEndOf="@id/tv_unit_item"
             app:layout_constraintTop_toTopOf="@id/tv_unit_item" />

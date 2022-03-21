@@ -12,7 +12,6 @@ import com.example.weatherforecastapp.databinding.FragmentNextDaysBinding
 import com.example.weatherforecastapp.favorite.model.Favorite
 import com.example.weatherforecastapp.ui.home.model.Daily
 import com.example.weatherforecastapp.ui.home.viewmodel.WeatherViewModel
-import kotlinx.coroutines.Job
 
 class FavNextDaysFragment : Fragment() {
     private lateinit var binding: FragmentNextDaysBinding

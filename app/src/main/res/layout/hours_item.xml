@@ -73,7 +73,7 @@
         android:id="@+id/tv_hour_tempp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="C"
+        android:text=""
         android:textSize="21sp"
         app:layout_constraintStart_toEndOf="@+id/tv_hour_temp_unit"
         app:layout_constraintTop_toTopOf="@+id/tv_hour_temp_unit" />

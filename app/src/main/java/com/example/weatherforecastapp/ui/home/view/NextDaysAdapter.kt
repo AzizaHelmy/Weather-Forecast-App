@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherforecastapp.R
@@ -27,11 +26,19 @@ class NextDaysAdapter(private val daily: List<Daily>, val context: Context) :
         val model = daily[position + 1]
         holder.binding.tvTempItem.text = model.temp.min.toInt().toString()
         holder.binding.tvHumidityTemp.text = "${model.humidity} %"
-        holder.binding.tvWindSpeedUnitItem.text = "${model.wind_speed} m/s"
         holder.binding.tvPressureUnitItem.text = "${model.pressure} hpa"
         holder.binding.tvCloudUnitItem.text = "${model.clouds} %"
         holder.binding.tvDescriptionItem.text = model.weather[0].description
-
+        if (model.temp.min.toInt() <= 32) {
+            holder.binding.tvTempTypeItem.text = "C"
+            holder.binding.tvWindSpeedUnitItem.text = "${model.wind_speed} m/s"
+        } else if (model.temp.min.toInt() in 33..273) {
+            holder.binding.tvTempTypeItem.text = "F"
+            holder.binding.tvWindSpeedUnitItem.text = "${model.wind_speed} ms/h"
+        } else {
+            holder.binding.tvTempTypeItem.text = "K"
+            holder.binding.tvWindSpeedUnitItem.text = "${model.wind_speed} m/s"
+        }
         val icon = model.weather[0].icon
         when (icon) {
             "01d" -> holder.binding.ivNext7day.setImageResource(R.drawable.sun)
@@ -59,16 +66,16 @@ class NextDaysAdapter(private val daily: List<Daily>, val context: Context) :
         val language = sharedPreferences.getString("language", "ar")!!
         when (position + 1) {
             1 -> {
-                if(language == "ar"){
+                if (language == "ar") {
                     holder.binding.tvDayItem.text = "غدا"
-                }else{
+                } else {
                     holder.binding.tvDayItem.text = "Tomorrow"
                 }
             }
             2 -> {
-                if(language == "ar"){
+                if (language == "ar") {
                     holder.binding.tvDayItem.text = "بعد غد"
-                }else{
+                } else {
                     holder.binding.tvDayItem.text = "After Tomorrow"
                 }
             }
@@ -78,6 +85,7 @@ class NextDaysAdapter(private val daily: List<Daily>, val context: Context) :
         }
 
     }
+
     override fun getItemCount(): Int {
         return daily.size - 1
     }
