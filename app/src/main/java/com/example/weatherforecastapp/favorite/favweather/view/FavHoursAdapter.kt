@@ -27,6 +27,13 @@ class FavHoursAdapter(private val hours: List<Hourly>, val context: Context) :
         val hourly = hours[position]
         holder.binding.tvHour.text= DateTime.convertFromUnixToTime(hourly.dt.toLong())
         holder.binding.tvHourTemp.text=hourly.temp.toInt().toString()
+        if (hourly.temp.toInt()<= 32) {
+            holder.binding.tvHourTempp.text = "C"
+        } else if (hourly.temp.toInt() in 33..273) {
+            holder.binding.tvHourTempp.text = "F"
+        } else {
+            holder.binding.tvHourTempp.text = "K"
+        }
         val icon= hourly.weather[0].icon
         when (icon) {
             "01d" -> holder.binding.ivHourIcon.setImageResource(R.drawable.sun)

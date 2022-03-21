@@ -29,10 +29,18 @@ class FavNextDaysAdapter(private val daily: List<Daily>, val context: Context) :
         holder.binding.tvPressureUnitItem.text = "${model.pressure} hpa"
         holder.binding.tvCloudUnitItem.text = "${model.clouds} %"
         holder.binding.tvDescriptionItem.text = model.weather[0].description
-
+        if (model.temp.min.toInt() <= 32) {
+            holder.binding.tvTempTypeItem.text = "C"
+            holder.binding.tvWindSpeedUnitItem.text = "${model.wind_speed} m/s"
+        } else if (model.temp.min.toInt() in 33..273) {
+            holder.binding.tvTempTypeItem.text = "F"
+            holder.binding.tvWindSpeedUnitItem.text = "${model.wind_speed} ms/h"
+        } else {
+            holder.binding.tvTempTypeItem.text = "K"
+            holder.binding.tvWindSpeedUnitItem.text = "${model.wind_speed} m/s"
+        }
         val icon = model.weather[0].icon
         when (icon) {
-            "01d" -> holder.binding.ivNext7day.setImageResource(R.drawable.sun)
             "01d" -> holder.binding.ivNext7day.setImageResource(R.drawable.sun)
             "02d" -> holder.binding.ivNext7day.setImageResource(R.drawable.few_cloud)
             "03d" -> holder.binding.ivNext7day.setImageResource(R.drawable.clouds)
