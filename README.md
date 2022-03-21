@@ -1,6 +1,6 @@
 # Weather-Forecast-App
 an android app that displays the weather status and the temperature from  your location
-# Featurs:
+# Features:
  -MVVM
 
  -Navigation Components
