@@ -1,5 +1,18 @@
 # Weather-Forecast-App
 an android app that displays the weather status and the temperature from  your location
+# Featurs:
+ -MVVM
+
+ -Navigation Components
+
+ -View binding
+
+ -coroutines
+
+ -Live Data
+
+ -KTX
+
 # ScreenShots:
 <div>
   <img src ="https://user-images.githubusercontent.com/31763341/159352491-dfdf7c44-fe7b-436a-b6e8-db51f7237dfe.png" width=40%>
