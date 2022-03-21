@@ -1,5 +1,6 @@
 package com.example.weatherforecastapp
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -7,15 +8,20 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import androidx.preference.PreferenceManager
 import com.example.weatherforecastapp.databinding.ActivityMainBinding
+import com.example.weatherforecastapp.utils.Constant
 import com.example.weatherforecastapp.utils.InternetConnection
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
-    private lateinit var internetConnection: InternetConnection
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadSettings()
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
@@ -37,34 +43,24 @@ class MainActivity : AppCompatActivity() {
                 binding.bottomNav.visibility = View.VISIBLE
             }
         }
-
-        internetConnection= InternetConnection(this)
-        internetConnection.observe(this, androidx.lifecycle.Observer {
-            if (!it)
-            {
-                binding.tvNoInternet.visibility= View.VISIBLE
-                binding.bottomNav.visibility=View.GONE
-                binding.tvNoInternet.isSelected=true
-                binding.tvNoInternet.text=resources.getString(R.string.no_internet)
-            }
-            else
-            {
-                binding.tvNoInternet.visibility= View.GONE
-               // binding.bottomNav.visibility=View.VISIBLE
-            }
-        })
-
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        navController = findNavController(R.id.alertsFragment)
-        return navController.navigateUp() || navController.popBackStack() || super.onSupportNavigateUp()
+//====================================================
+    private fun setLocale(lng: String) {
+        val locale = Locale(lng)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        baseContext.resources
+            .updateConfiguration(config, baseContext.resources.displayMetrics)
     }
 
-//    override fun onBackPressed() {
-//        super.onBackPressed()
-//        navController.navigateUp();  //I tried this
-//        navController.popBackStack()
-//    }
-
+    private fun loadSettings()
+    {
+        val sp= PreferenceManager.getDefaultSharedPreferences(this)
+        val languageKey=sp.getString("language","")
+        setLocale(languageKey!!)
+        Constant.appDefaultLanguage = languageKey
+        Constant.api_lang=languageKey
+    }
 }

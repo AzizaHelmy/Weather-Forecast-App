@@ -180,9 +180,11 @@ class HomeFragment : Fragment() {
             binding.tvPressureUnit.text = "$pressure hpa"
             binding.tvWindSpeedUnit.text = "$windSpeed m/s"
             binding.tvCloudsUnit.text = "$clouds %"
-//            if (temp.toInt() > 32) {
-//                binding.tvUnit.text = "F"
-//            }
+            if (temp.toInt() > 32) {
+                binding.tvUnit.text = "F"
+            }else{
+                binding.tvUnit.text="C"
+            }
             binding.tvCountry.text =adminArea
             when (icon) {
                 "01d" -> binding.ivIcon.setImageResource(R.drawable.sun)

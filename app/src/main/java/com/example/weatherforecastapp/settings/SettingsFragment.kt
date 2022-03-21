@@ -135,17 +135,6 @@ class SettingsFragment : PreferenceFragmentCompat(),
     override fun onMultiWindowModeChanged(isInMultiWindowMode: Boolean) {
     }
 
-    //================================================
-//    override fun onPause() {
-//        if (changeLanguage){
-//            CoroutineScope(Dispatchers.Default).launch {
-//                Navigation.findNavController(requireView()).navigate(R.id.homeFragment)
-//            //restart()
-//            }
-//            changeLanguage=false
-//        }
-//        super.onPause()
-//    }
     //===============================================
     fun restart() {
         val intent = requireActivity().intent
@@ -162,18 +151,18 @@ class SettingsFragment : PreferenceFragmentCompat(),
     //================================================
     override fun onDestroy() {
         super.onDestroy()
-        preferenceScreen.sharedPreferences?.unregisterOnSharedPreferenceChangeListener(this)
+       // preferenceScreen.sharedPreferences?.unregisterOnSharedPreferenceChangeListener(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        preferenceScreen.sharedPreferences?.registerOnSharedPreferenceChangeListener(this)
-        val pressedCallback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                Navigation.findNavController(view!!).navigate(R.id.homeFragment)
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(this, pressedCallback)
+//        preferenceScreen.sharedPreferences?.registerOnSharedPreferenceChangeListener(this)
+//        val pressedCallback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
+//            override fun handleOnBackPressed() {
+//                Navigation.findNavController(view!!).navigate(R.id.homeFragment)
+//            }
+//        }
+//        requireActivity().onBackPressedDispatcher.addCallback(this, pressedCallback)
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {

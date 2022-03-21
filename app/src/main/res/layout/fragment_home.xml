@@ -18,22 +18,22 @@
             android:shadowColor="@color/black"
             android:shadowDx="@integer/material_motion_duration_medium_2"
             android:shadowDy="@integer/material_motion_duration_long_2"
-            android:text="@string/country"
             android:textSize="21sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Giza" />
 
         <TextView
             android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="@string/date"
             android:textSize="21sp"
             app:layout_constraintEnd_toEndOf="@+id/tv_country"
             app:layout_constraintStart_toStartOf="@+id/tv_country"
-            app:layout_constraintTop_toBottomOf="@+id/tv_country" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_country"
+            tools:text="6 march" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_weather"
@@ -60,14 +60,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="@string/description"
+                    android:fontFamily="serif"
                     android:textColor="#333435"
                     android:textSize="27sp"
-                    android:fontFamily="serif"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="clear sky" />
 
                 <ImageView
                     android:id="@+id/iv_icon"
@@ -88,7 +88,8 @@
                     android:textSize="57sp"
                     app:layout_constraintEnd_toEndOf="@id/tv_discription"
                     app:layout_constraintStart_toStartOf="@id/tv_discription"
-                    app:layout_constraintTop_toBottomOf="@id/tv_discription" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_discription"
+                    />
 
                 <TextView
                     android:id="@+id/tv_temp_symbol"
@@ -105,11 +106,11 @@
                     android:id="@+id/tv_unit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="5dp"
                     android:text="@string/type"
                     android:textSize="27sp"
                     app:layout_constraintStart_toEndOf="@id/tv_temp_symbol"
-                    app:layout_constraintTop_toBottomOf="@id/tv_discription" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_discription"
+                    />
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/card_humidity_home"
@@ -146,7 +147,8 @@
                             android:textSize="19sp"
                             app:layout_constraintEnd_toEndOf="@id/iv_humidity_icon"
                             app:layout_constraintStart_toStartOf="@id/iv_humidity_icon"
-                            app:layout_constraintTop_toBottomOf="@id/iv_humidity_icon" />
+                            app:layout_constraintTop_toBottomOf="@id/iv_humidity_icon"
+                            tools:text="@string/humidity" />
 
                         <ImageView
                             android:id="@+id/iv_humidity_icon"
@@ -197,7 +199,8 @@
                             android:textSize="19sp"
                             app:layout_constraintEnd_toEndOf="@id/iv_wind_speed"
                             app:layout_constraintStart_toStartOf="@id/iv_wind_speed"
-                            app:layout_constraintTop_toBottomOf="@id/iv_wind_speed" />
+                            app:layout_constraintTop_toBottomOf="@id/iv_wind_speed"
+                            tools:text="@string/wind_speed" />
 
                         <ImageView
                             android:id="@+id/iv_wind_speed"
@@ -247,7 +250,8 @@
                             android:textSize="19sp"
                             app:layout_constraintEnd_toEndOf="@id/iv_pressure"
                             app:layout_constraintStart_toStartOf="@id/iv_pressure"
-                            app:layout_constraintTop_toBottomOf="@id/iv_pressure" />
+                            app:layout_constraintTop_toBottomOf="@id/iv_pressure"
+                            tools:text="@string/pressure" />
 
                         <ImageView
                             android:id="@+id/iv_pressure"
@@ -297,7 +301,8 @@
                             android:textSize="21sp"
                             app:layout_constraintEnd_toEndOf="@id/iv_humi"
                             app:layout_constraintStart_toStartOf="@id/iv_humi"
-                            app:layout_constraintTop_toBottomOf="@id/iv_humi" />
+                            app:layout_constraintTop_toBottomOf="@id/iv_humi"
+                            tools:text="@string/clouds" />
 
                         <ImageView
                             android:id="@+id/iv_humi"

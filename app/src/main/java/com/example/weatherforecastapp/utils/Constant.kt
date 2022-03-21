@@ -14,4 +14,6 @@ object Constant {
     const val CHANNEL_ID = "MEDIC_CHANNEL"
     const val CHANNEL_NAME = "medic channel"
     const val NOTIFICATION_TITLE_KEY = "NOTIFICATION_TITLE"
+    var api_lang="en"
+    var appDefaultLanguage: String = "en"
 }

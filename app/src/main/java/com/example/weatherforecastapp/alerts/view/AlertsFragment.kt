@@ -35,6 +35,12 @@ class AlertsFragment : Fragment(), AlertOnClickListener {
     private lateinit var alerts: List<Alert>
     private var oneTimeRequest: MutableList<UUID> = mutableListOf()
 
+    private var startDate: Long = 0L
+    private var endDate: Long = 0L
+    private var startTime: Long = 0L
+    private var endTime: Long = 0L
+
+
     //KTX
     private val alertViewModel by viewModels<AlertViewModel>()
 
@@ -47,6 +53,7 @@ class AlertsFragment : Fragment(), AlertOnClickListener {
         }
         requireActivity().onBackPressedDispatcher.addCallback(this, pressedCallback)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -78,6 +85,7 @@ class AlertsFragment : Fragment(), AlertOnClickListener {
             val datePickerDialog = DatePickerDialog(
                 requireContext(),
                 DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                   //startDate=
                     bindingDialog.tvStartDate.text = "$dayOfMonth $monthOfYear, $year"
                 },
                 year,
@@ -128,7 +136,7 @@ class AlertsFragment : Fragment(), AlertOnClickListener {
             }
         }
 
-        bindingDialog.addAlertBtn.setOnClickListener { //  val alert= Alert()
+        bindingDialog.addAlertBtn.setOnClickListener {
             //get the data and set it into rv
             // get alert obj and pass it to viewmodel
             val alert = Alert("", 3, "Rain", "Azza", 1)
@@ -177,6 +185,7 @@ class AlertsFragment : Fragment(), AlertOnClickListener {
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.setCancelable(false)
     }
+
     //===================================================================
     override fun onOptionClicked(alert: Alert) {
         //if need update => call update , call dialoge
