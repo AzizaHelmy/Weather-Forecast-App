@@ -41,6 +41,7 @@ class FavNextDaysAdapter(private val daily: List<Daily>, val context: Context) :
         }
         val icon = model.weather[0].icon
         when (icon) {
+            
             "01d" -> holder.binding.ivNext7day.setImageResource(R.drawable.sun)
             "02d" -> holder.binding.ivNext7day.setImageResource(R.drawable.few_cloud)
             "03d" -> holder.binding.ivNext7day.setImageResource(R.drawable.clouds)
