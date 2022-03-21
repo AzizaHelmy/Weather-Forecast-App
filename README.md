@@ -6,9 +6,15 @@ an android app that displays the weather status and the temperature from  your l
  -Navigation Components
 
  -View binding
-
+ 
+ -WorkManager
+ 
  -coroutines
-
+ 
+ -Romm DB
+ 
+ -Retrofit
+ 
  -Live Data
 
  -KTX
