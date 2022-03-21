@@ -1,6 +1,6 @@
 # Weather-Forecast-App
 an android app that displays the weather status and the temperature from  your location
-#Screen Shots
+# ScreenShots:
 <div>
   <img src ="https://user-images.githubusercontent.com/31763341/159352491-dfdf7c44-fe7b-436a-b6e8-db51f7237dfe.png" width=40%>
    <img src ="https://user-images.githubusercontent.com/31763341/159352728-542fbb22-215e-4137-a0d1-f906c27b33a9.png" width=40%>
