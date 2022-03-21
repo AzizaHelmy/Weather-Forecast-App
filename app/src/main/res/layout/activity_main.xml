@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="95dp"
+
     tools:context=".MainActivity">
 
 
@@ -13,22 +13,36 @@
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:defaultNavHost="true"
         app:navGraph="@navigation/nav_graph" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
         android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        app:labelVisibilityMode="selected"
-        app:menu="@menu/nav_menu"
         app:itemTextColor="@color/black"
+        app:labelVisibilityMode="selected"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:menu="@menu/nav_menu">
+
+        <TextView
+            android:id="@+id/tv_no_internet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/no_internet"
+            android:textColor="@color/white"
+            android:padding="13dp"
+            android:visibility="gone"
+            android:background="@color/black"
+            android:fontFamily="serif"
+            android:textSize="19sp" />
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

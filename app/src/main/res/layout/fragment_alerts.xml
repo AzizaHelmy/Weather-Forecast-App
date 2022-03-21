@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:id="@+id/layout_alert"
+    android:background="#DAD5D5"
     tools:context=".alerts.view.AlertsFragment">
 
     <com.airbnb.lottie.LottieAnimationView
@@ -35,6 +36,7 @@
             android:layout_marginStart="13dp"
             android:layout_marginTop="13dp"
             tools:listitem="@layout/alert_item"
+
             android:layout_marginEnd="13dp"
             android:layout_marginBottom="55dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -54,31 +56,32 @@
 
         <ImageView
             android:id="@+id/iv_empty"
-            android:layout_width="match_parent"
-            android:layout_height="488dp"
-            android:src="@drawable/empty_list"
+            android:layout_width="226dp"
+            android:layout_height="227dp"
+            android:src="@drawable/alarmy"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.356" />
+            app:layout_constraintVertical_bias="0.319" />
 
         <TextView
             android:id="@+id/tv_empty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
-            android:text="Noting to show"
-            android:visibility="gone"
+            android:layout_marginTop="60dp"
+            android:text="@string/no_alerts"
             android:textColor="#9E9898"
-            android:textSize="21sp"
+            android:textSize="23sp"
+            android:fontFamily="serif"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.569"
+            app:layout_constraintHorizontal_bias="0.544"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.572" />
+            app:layout_constraintVertical_bias="0.571" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

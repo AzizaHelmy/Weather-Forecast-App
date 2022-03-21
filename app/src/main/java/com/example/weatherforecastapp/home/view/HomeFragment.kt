@@ -4,6 +4,8 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Address
+import android.location.Geocoder
 import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
@@ -14,6 +16,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -23,11 +26,19 @@ import androidx.navigation.Navigation
 import androidx.preference.Preference
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.volley.toolbox.HttpResponse
 import com.example.weatherforecastapp.R
 import com.example.weatherforecastapp.databinding.FragmentHomeBinding
 import com.example.weatherforecastapp.home.model.Hourly
 import com.example.weatherforecastapp.home.viewmodel.WeatherViewModel
+import com.example.weatherforecastapp.utils.Constant
 import com.google.android.gms.location.*
+
+import org.json.JSONException
+import org.json.JSONObject
+
+import java.io.IOException
+import java.io.InputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -42,6 +53,8 @@ class HomeFragment : Fragment() {
     private lateinit var units: String
     private lateinit var language: String
     private lateinit var preferences: Preference
+    private lateinit var bundle: Bundle
+    private lateinit var geocoder: Geocoder
 
     companion object {
         private const val PERMISSINO_ID = 0
@@ -55,6 +68,16 @@ class HomeFragment : Fragment() {
             super.onLocationResult(locationResult)
             yourLocationLat = locationResult.lastLocation.altitude
             yourLocationLon = locationResult.lastLocation.latitude
+            Log.e("TAG", "location$yourLocationLat")
+
+            weatherViewModel.getData(
+                requireContext(),
+                yourLocationLat,
+                yourLocationLon,
+                language,
+                units
+            )
+
 
         }
     }
@@ -62,115 +85,42 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadSettings()
-//        val pressedCallback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
-//            override fun handleOnBackPressed() {
-//                findNavController(view!!).navigate()
-//            }
-//        }
-//        requireActivity().onBackPressedDispatcher.addCallback(this, pressedCallback)
+
+
+        geocoder = Geocoder(requireContext(), Locale.getDefault())
+        val pressedCallback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                requireActivity().finish()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, pressedCallback)
     }
 
 
     private fun loadSettings() {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         units = sharedPreferences.getString("unit", "")!!
-        language = sharedPreferences.getString("language", "ar")!!
+        language = sharedPreferences.getString("language", "en")!!
+        // get location and map  here
         val locationUsingGps = sharedPreferences.getBoolean("USE_DEVICE_LOCATION", true)
 
     }
 
     //============================================
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(LayoutInflater.from(context), container, false)
-        preferences = Preference(requireContext())
-        //units = preferences
-       weatherViewModel.getData(
-            requireContext(),
-            30.621175336675805,
-            32.26823826304946,
-            language,
-            "imperial"
-        )
-        weatherViewModel.liveData.observe(requireActivity()) {
-            val weather = it
-            hours = weather?.hourly ?: emptyList()
-            val humidity = weather.current.humidity.toString()
-            val windSpeed = weather.current.wind_speed.toString()
-            val pressure = weather.current.pressure.toString()
-            val clouds = weather.current.clouds.toString()
-            val description = weather.current.weather[0].description
-            val icon = weather.current.weather[0].icon
-            val temp = weather.current.temp.toInt().toString()
-            val country = it.timezone
-            Log.e("TAG", icon)
-            setData(temp, description, humidity, pressure, windSpeed, clouds, country, icon)
-            setUpRecyclerView()
-        }
 
-        val date = Date()
-        val formatedDate: String =
-            SimpleDateFormat("EEE, d MMM yyyy ", Locale.ENGLISH).format(date)
-        binding.tvDate.text = formatedDate
 
         return binding.root
 
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun setData(
-        temp: String,
-        description: String,
-        humidity: String,
-        pressure: String,
-        windSpeed: String,
-        clouds: String,
-        country: String,
-        icon: String
-    ) {
-//        val geocoder = Geocoder(context, Locale.getDefault())
-//        val address: List<Address> = geocoder.getFromLocation(yourLocationLat,yourLocationLon, 1)
-//        val cityName: String = address[0].getAddressLine(0)
-//        val stateName: String = address[0].getAddressLine(1)
-//        val countryName: String = address[0].getAddressLine(2)
-
-        binding.tvTempreture.text = temp
-        binding.tvDiscription.text = description
-        binding.tvHumidityTemp.text = "$humidity %"
-        binding.tvPressureUnit.text = "$pressure hpa"
-        binding.tvWindSpeedUnit.text = "$windSpeed m/s"
-        binding.tvCloudsUnit.text = "$clouds %"
-        if (temp.toInt() > 32) {
-            binding.tvUnit.text = "F"
-        }
-        binding.tvCountry.text = country
-        when (icon) {
-            "01d" -> binding.ivIcon.setImageResource(R.drawable.icon1)
-            "02d" -> binding.ivIcon.setImageResource(R.drawable.icon2)
-            "03d" -> binding.ivIcon.setImageResource(R.drawable.sun)
-            "04d" -> binding.ivIcon.setImageResource(R.drawable.icon4)
-            "09d" -> binding.ivIcon.setImageResource(R.drawable.storm)
-            "10d" -> binding.ivIcon.setImageResource(R.drawable.few_cloud)
-            "11d" -> binding.ivIcon.setImageResource(R.drawable.few_clouds)
-            "13d" -> binding.ivIcon.setImageResource(R.drawable.storm)
-            "50d" -> binding.ivIcon.setImageResource(R.drawable.storm)
-            "01n" -> binding.ivIcon.setImageResource(R.drawable.storm)
-            "02n" -> binding.ivIcon.setImageResource(R.drawable.scarred)
-            "03n" -> binding.ivIcon.setImageResource(R.drawable.sun)
-            "04n" -> binding.ivIcon.setImageResource(R.drawable.few_clouds)
-            "09n" -> binding.ivIcon.setImageResource(R.drawable.sun)
-            "10n" -> binding.ivIcon.setImageResource(R.drawable.storm)
-            "11n" -> binding.ivIcon.setImageResource(R.drawable.storm)
-            "13n" -> binding.ivIcon.setImageResource(R.drawable.storm)
-            "50n" -> binding.ivIcon.setImageResource(R.drawable.storm)
-        }
-    }
-
     private fun setUpRecyclerView() {
-        val layoutManager = LinearLayoutManager(requireActivity())
+        val layoutManager = LinearLayoutManager(requireContext())
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
         binding.rvHours.layoutManager = layoutManager
         hoursAdapter = HoursAdapter(hours, requireContext())
@@ -180,13 +130,87 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.tv7days.setOnClickListener {
-            //i will pass lat , long
+
             Navigation.findNavController(requireView())
-                .navigate(R.id.action_homeFragment_to_nextDaysFragment)
+                .navigate(R.id.action_homeFragment_to_nextDaysFragment, bundle)
 
         }
 
         getMyLocation()
+
+        preferences = Preference(requireContext())
+        //units = preferences
+        weatherViewModel.getData(
+            requireContext(),
+            yourLocationLat,
+            yourLocationLon,
+            language,
+            units
+        )
+        weatherViewModel.liveData.observe(requireActivity()) {
+
+            val weather = it
+            Log.e("TAG", "Weather$weather")
+            hours = weather?.hourly ?: emptyList()
+            val humidity = weather.current.humidity.toString()
+            val windSpeed = weather.current.wind_speed.toString()
+            val pressure = weather.current.pressure.toString()
+            val clouds = weather.current.clouds.toString()
+            val description = weather.current.weather[0].description
+            val icon = weather.current.weather[0].icon
+            val temp = weather.current.temp.toInt().toString()
+            Log.e("TAG", icon)
+
+            bundle = Bundle()
+            bundle.putDouble("lat", it.lat)
+            bundle.putDouble("lon", it.lon)
+
+//            val args: Bundle = requireArguments()
+//            val latFromMap = args.getInt("lat")
+//            val lngFromMap = args.getInt("long")
+          //Log.e("TAG","my address ${ getLocationInfo(yourLocationLat,yourLocationLon)}")
+          val address: Address =
+              //geocoder.getFromLocation(30.621175336675805, 32.26823826304946,1).firstOrNull()?:return@observe
+             geocoder.getFromLocation(yourLocationLat, yourLocationLon,1).firstOrNull()?:return@observe
+           //geocoder.getFromLocation(yourLocationLat, yourLocationLon, 1)[0]
+            val adminArea = address.adminArea
+            binding.tvTempreture.text = temp
+            binding.tvDiscription.text = description
+            binding.tvHumidityTemp.text = "$humidity %"
+            binding.tvPressureUnit.text = "$pressure hpa"
+            binding.tvWindSpeedUnit.text = "$windSpeed m/s"
+            binding.tvCloudsUnit.text = "$clouds %"
+//            if (temp.toInt() > 32) {
+//                binding.tvUnit.text = "F"
+//            }
+            binding.tvCountry.text =adminArea
+            when (icon) {
+                "01d" -> binding.ivIcon.setImageResource(R.drawable.sun)
+                "02d" -> binding.ivIcon.setImageResource(R.drawable.few_cloudy)
+                "03d" -> binding.ivIcon.setImageResource(R.drawable.clouds)
+                "04d" -> binding.ivIcon.setImageResource(R.drawable.icon1)
+                "09d" -> binding.ivIcon.setImageResource(R.drawable.shower_rain)
+                "10d" -> binding.ivIcon.setImageResource(R.drawable.rainy)
+                "11d" -> binding.ivIcon.setImageResource(R.drawable.thunderstorm)
+                "13d" -> binding.ivIcon.setImageResource(R.drawable.snow)
+                "50d" -> binding.ivIcon.setImageResource(R.drawable.icon2)
+                "01n" -> binding.ivIcon.setImageResource(R.drawable.sun)
+                "02n" -> binding.ivIcon.setImageResource(R.drawable.scarred)
+                "03n" -> binding.ivIcon.setImageResource(R.drawable.clouds)
+                "04n" -> binding.ivIcon.setImageResource(R.drawable.icon2)
+                "09n" -> binding.ivIcon.setImageResource(R.drawable.rainy)
+                "10n" -> binding.ivIcon.setImageResource(R.drawable.rain)
+                "11n" -> binding.ivIcon.setImageResource(R.drawable.thunderstorm)
+                "13n" -> binding.ivIcon.setImageResource(R.drawable.snow)
+                "50n" -> binding.ivIcon.setImageResource(R.drawable.icon2)
+            }
+            setUpRecyclerView()
+        }
+
+        val date = Date()
+        val formatedDate: String =
+            SimpleDateFormat("EEE, d MMM yyyy ").format(date)
+        binding.tvDate.text = formatedDate
     }
 
     //=========================================================
@@ -195,7 +219,7 @@ class HomeFragment : Fragment() {
         if (checkPermissions()) {
             if (isLocationEnabled()) {
 
-                val locationRequest = LocationRequest()
+                val locationRequest = LocationRequest.create()
                 locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
                 locationRequest.interval = 0
                 locationRequest.fastestInterval = 0
@@ -205,8 +229,10 @@ class HomeFragment : Fragment() {
                     LocationServices.getFusedLocationProviderClient(requireContext())
                 fusedLocationClient.requestLocationUpdates(
                     locationRequest, locationCallback,
-                    Looper.myLooper()!!
-                )
+                    Looper.getMainLooper())
+//                ).addOnCompleteListener {
+//                    Log.e("TAG","${it.result}")
+//                }
 
             } else {
                 Toast.makeText(requireContext(), "Turn on location", Toast.LENGTH_LONG).show()
@@ -244,7 +270,7 @@ class HomeFragment : Fragment() {
     }
 
     //==============================================
-    fun requestPermisssion() {
+    private fun requestPermisssion() {
         ActivityCompat.requestPermissions(
             requireActivity(),
             arrayOf(
@@ -262,8 +288,9 @@ class HomeFragment : Fragment() {
     ) {
         if (requestCode == PERMISSINO_ID) {
             if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                //getLastLocation()
+                getMyLocation()
             }
         }
     }
+    //===========================
 }

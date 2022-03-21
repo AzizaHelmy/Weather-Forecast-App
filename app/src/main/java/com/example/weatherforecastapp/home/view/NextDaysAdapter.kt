@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherforecastapp.R
 import com.example.weatherforecastapp.databinding.NextDayItemBinding
@@ -12,6 +14,7 @@ import com.example.weatherforecastapp.utils.DateTime
 
 class NextDaysAdapter(private val daily: List<Daily>, val context: Context) :
     RecyclerView.Adapter<NextDaysAdapter.NextDaysViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NextDaysViewHolder {
 
         return (NextDaysViewHolder(
@@ -21,7 +24,7 @@ class NextDaysAdapter(private val daily: List<Daily>, val context: Context) :
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: NextDaysViewHolder, position: Int) {
-        val model = daily[position+1]
+        val model = daily[position + 1]
         holder.binding.tvTempItem.text = model.temp.min.toInt().toString()
         holder.binding.tvHumidityTemp.text = "${model.humidity} %"
         holder.binding.tvWindSpeedUnitItem.text = "${model.wind_speed} m/s"
@@ -32,32 +35,42 @@ class NextDaysAdapter(private val daily: List<Daily>, val context: Context) :
         val icon = model.weather[0].icon
         when (icon) {
             "01d" -> holder.binding.ivNext7day.setImageResource(R.drawable.sun)
-            "02d" -> holder.binding.ivNext7day.setImageResource(R.drawable.icon2)
-            "03d" -> holder.binding.ivNext7day.setImageResource(R.drawable.sun)
-            "04d" -> holder.binding.ivNext7day.setImageResource(R.drawable.icon4)
-            "09d" -> holder.binding.ivNext7day.setImageResource(R.drawable.storm)
-            "10d" -> holder.binding.ivNext7day.setImageResource(R.drawable.few_cloud)
-            "11d" -> holder.binding.ivNext7day.setImageResource(R.drawable.few_clouds)
-            "13d" -> holder.binding.ivNext7day.setImageResource(R.drawable.storm)
-            "50d" -> holder.binding.ivNext7day.setImageResource(R.drawable.storm)
-            "01n" -> holder.binding.ivNext7day.setImageResource(R.drawable.night)
-            "02n" -> holder.binding.ivNext7day.setImageResource(R.drawable.storm)
-            "03n" -> holder.binding.ivNext7day.setImageResource(R.drawable.storm)
-            "04n" -> holder.binding.ivNext7day.setImageResource(R.drawable.few_clouds)
-            "09n" -> holder.binding.ivNext7day.setImageResource(R.drawable.storm)
-            "10n" -> holder.binding.ivNext7day.setImageResource(R.drawable.storm)
-            "11n" -> holder.binding.ivNext7day.setImageResource(R.drawable.storm)
-            "13n" -> holder.binding.ivNext7day.setImageResource(R.drawable.storm)
-            "50n" -> holder.binding.ivNext7day.setImageResource(R.drawable.storm)
+            "02d" -> holder.binding.ivNext7day.setImageResource(R.drawable.few_cloud)
+            "03d" -> holder.binding.ivNext7day.setImageResource(R.drawable.clouds)
+            "04d" -> holder.binding.ivNext7day.setImageResource(R.drawable.windo)
+            "09d" -> holder.binding.ivNext7day.setImageResource(R.drawable.shower_rain)
+            "10d" -> holder.binding.ivNext7day.setImageResource(R.drawable.rainy)
+            "11d" -> holder.binding.ivNext7day.setImageResource(R.drawable.thunderstorm)
+            "13d" -> holder.binding.ivNext7day.setImageResource(R.drawable.snow)
+            "50d" -> holder.binding.ivNext7day.setImageResource(R.drawable.icon2)
+            "01n" -> holder.binding.ivNext7day.setImageResource(R.drawable.sun)
+            "02n" -> holder.binding.ivNext7day.setImageResource(R.drawable.few_clouds)
+            "03n" -> holder.binding.ivNext7day.setImageResource(R.drawable.clouds)
+            "04n" -> holder.binding.ivNext7day.setImageResource(R.drawable.windo)
+            "09n" -> holder.binding.ivNext7day.setImageResource(R.drawable.rainy)
+            "10n" -> holder.binding.ivNext7day.setImageResource(R.drawable.rain)
+            "11n" -> holder.binding.ivNext7day.setImageResource(R.drawable.thunderstorm)
+            "13n" -> holder.binding.ivNext7day.setImageResource(R.drawable.snow)
+            "50n" -> holder.binding.ivNext7day.setImageResource(R.drawable.icon2)
         }
 
         holder.binding.tvDateItem.text = DateTime.convertFromUnixToDate(model.dt.toLong())
-        when (position+1) {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val language = sharedPreferences.getString("language", "ar")!!
+        when (position + 1) {
             1 -> {
-                holder.binding.tvDayItem.text = "Tomorrow"
+                if(language == "ar"){
+                    holder.binding.tvDayItem.text = "غدا"
+                }else{
+                    holder.binding.tvDayItem.text = "Tomorrow"
+                }
             }
             2 -> {
-                holder.binding.tvDayItem.text = "After Tomorrow"
+                if(language == "ar"){
+                    holder.binding.tvDayItem.text = "بعد غد"
+                }else{
+                    holder.binding.tvDayItem.text = "After Tomorrow"
+                }
             }
             else -> {
                 holder.binding.tvDayItem.text = DateTime.convertFromUnixToDays(model.dt.toLong())
@@ -65,9 +78,8 @@ class NextDaysAdapter(private val daily: List<Daily>, val context: Context) :
         }
 
     }
-
     override fun getItemCount(): Int {
-        return daily.size-1
+        return daily.size - 1
     }
 
     //======================================================

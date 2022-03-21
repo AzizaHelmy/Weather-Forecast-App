@@ -5,58 +5,58 @@
 
     <PreferenceCategory
         android:icon="@drawable/ic_location"
-        android:title="Weather Location">
+        android:title="@string/weather_Location">
         <SwitchPreference
             android:defaultValue="true"
             android:disableDependentsState="true"
             android:key="USE_DEVICE_LOCATION"
-            android:summary="Allow the app to get your location"
-            android:title="GPS" />
+            android:summary="@string/gps_description"
+            android:title="@string/gps" />
         <Preference
             android:dependency="USE_DEVICE_LOCATION"
             android:key="CUSTOM_LOCATION"
-            android:summary="Choose your location from Map"
-            android:title="Map" />
+            android:summary="@string/map_description"
+            android:title="@string/map" />
     </PreferenceCategory>
     <PreferenceCategory
         android:icon="@drawable/ic_transform"
-        android:title="Units">
+        android:title="@string/units">
         <ListPreference
             android:defaultValue="METRIC"
             android:entries="@array/unit_system_entries"
             android:entryValues="@array/unit_system_values"
             android:key="unit"
             android:summary="%s"
-            android:title="Unit System" />
+            android:title="@string/unit_system" />
     </PreferenceCategory>
     <PreferenceCategory
         android:icon="@drawable/ic_language"
-        android:title="Language">
+        android:title="@string/language">
         <ListPreference
             android:defaultValue="en"
             android:entries="@array/languages_entries"
             android:entryValues="@array/languages_values"
             android:key="language"
             android:summary="%s"
-            android:title="App Language" />
+            android:title="@string/app_language" />
     </PreferenceCategory>
     <PreferenceCategory
-        android:title="Notification"
+        android:title="@string/notification"
         app:icon="@drawable/ic_notifications">
         <SwitchPreference
             android:key="notification_prefrence_key"
-            android:summary="show current weather as Notification"
-            android:title="Notifiaction" />
+            android:summary="@string/notificaion_description"
+            android:title="@string/notification" />
     </PreferenceCategory>
     <PreferenceCategory
         android:icon="@drawable/ic_light_mode"
-        android:title="Theme">
+        android:title="@string/theme">
         <ListPreference
             android:entries="@array/themes_entries"
             android:entryValues="@array/themes_values"
             android:key="@string/theme_prefrence_key"
             android:summary="%s"
-            android:title="App Theme"
+            android:title="@string/app_theme"
             app:defaultValue="@string/dark_theme_preference_value" />
     </PreferenceCategory>
 </PreferenceScreen>

@@ -12,16 +12,15 @@ import com.example.weatherforecastapp.home.model.Forecast
 import kotlinx.coroutines.launch
 
 class FavViewModel(context : Context) : ViewModel(), WeatherRemoteSource, WeatherLocalSource {
-    private var favMutableLiveData = MutableLiveData<List<Favorite>>()
-    val favliveData: LiveData<List<Favorite>> = favMutableLiveData
+
     private var mutableLiveData = MutableLiveData<Forecast>()
     var liveData: LiveData<Forecast> = mutableLiveData
 
-    val concretLocalSource: ConcretLocalSource = ConcretLocalSource( context )
+    private val concretLocalSource: ConcretLocalSource = ConcretLocalSource( context )
     var repo = Repository(this, concretLocalSource)
 
-    fun getData(context: Context, lat:Double, lon:Double) {
-        repo.getCurrentWeather(context,lat,lon)
+    fun getData(context: Context, lat: Double, lon: Double, language: String, units: String) {
+        repo.getCurrentWeather(context,lat,lon,language,units)
     }
 
     override suspend fun getWeatherOfFavPlace(favorite: Favorite) {
@@ -58,24 +57,8 @@ class FavViewModel(context : Context) : ViewModel(), WeatherRemoteSource, Weathe
         TODO("Not yet implemented")
     }
 
-//    override fun insertAlert(alert: Alert) {
-//        TODO("Not yet implemented")
-//    }
-//
-//    override fun deleteAlert(alert: Alert) {
-//        TODO("Not yet implemented")
-//    }
-//
-//    override fun updateAlert(alert: Alert) {
-//        TODO("Not yet implemented")
-//    }
-//
-//    override fun getAllAlerts(): LiveData<List<Alert>> {
-//        TODO("Not yet implemented")
-//    }
-
 
     override suspend fun getCurrentWeather(model: Forecast) {
-
+        return mutableLiveData.postValue(model)
     }
 }

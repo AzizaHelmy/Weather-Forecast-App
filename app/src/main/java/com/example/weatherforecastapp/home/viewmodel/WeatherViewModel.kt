@@ -3,6 +3,7 @@ package com.example.weatherforecastapp.home.viewmodel
 
 import com.example.weatherforecastapp.data.source.remote.WeatherRemoteSource
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,7 +24,9 @@ import com.example.weatherforecastapp.home.model.Forecast
     var repo = Repository(this,this)
 
     override suspend fun getCurrentWeather(model: Forecast) {
-        return mutableLiveData.postValue(model)
+        Log.e("TAG","model$model")
+       return  mutableLiveData.postValue(model)
+
     }
 
     fun getData(context: Context, lat:Double, lon:Double, lang:String, unit:String) {

@@ -53,24 +53,26 @@
 
         <ImageView
             android:id="@+id/iv_fav_empty"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/empty_list"
+            android:layout_width="223dp"
+            android:layout_height="177dp"
+            android:src="@drawable/nothing"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.354" />
 
         <TextView
             android:id="@+id/tv_fav_empty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
-            android:text="Noting to show"
+            android:text="@string/noting_to_show"
             android:textColor="#9E9898"
             android:textSize="21sp"
-            android:visibility="visible"
+            android:fontFamily="serif"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -81,7 +83,7 @@
             android:id="@+id/rv_fav_places"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="69dp"
+            android:layout_marginTop="73dp"
             android:layout_marginBottom="57dp"
             android:background="#DAD5D5"
             app:layout_constraintStart_toStartOf="parent"

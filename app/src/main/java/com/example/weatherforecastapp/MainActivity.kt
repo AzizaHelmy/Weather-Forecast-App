@@ -8,10 +8,12 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.weatherforecastapp.databinding.ActivityMainBinding
+import com.example.weatherforecastapp.utils.InternetConnection
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+    private lateinit var internetConnection: InternetConnection
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -27,12 +29,31 @@ class MainActivity : AppCompatActivity() {
             if (destination.id == R.id.mapsFragment ||
                 destination.id == R.id.nextDaysFragment ||
                 destination.id == R.id.splashFragment ||
-                destination.id == R.id.favWeatherFragment) {
+                destination.id == R.id.favNextDaysFragment ||
+                destination.id == R.id.favWeatherFragment
+            ) {
                 binding.bottomNav.visibility = View.GONE
             } else {
                 binding.bottomNav.visibility = View.VISIBLE
             }
         }
+
+        internetConnection= InternetConnection(this)
+        internetConnection.observe(this, androidx.lifecycle.Observer {
+            if (!it)
+            {
+                binding.tvNoInternet.visibility= View.VISIBLE
+                binding.bottomNav.visibility=View.GONE
+                binding.tvNoInternet.isSelected=true
+                binding.tvNoInternet.text=resources.getString(R.string.no_internet)
+            }
+            else
+            {
+                binding.tvNoInternet.visibility= View.GONE
+               // binding.bottomNav.visibility=View.VISIBLE
+            }
+        })
+
     }
 
     override fun onSupportNavigateUp(): Boolean {

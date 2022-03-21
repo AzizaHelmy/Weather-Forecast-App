@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/debug/res/mipmap-anydpi-v26/ic_lanch.xml" value="0.1" />
+        <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/debug/res/mipmap-anydpi-v26/ic_lanch_round.xml" value="0.1" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/drawable/card_fav.xml" value="0.2055" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/drawable/card_item.xml" value="0.112" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/drawable/card_view.xml" value="0.181" />
@@ -21,20 +23,23 @@
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/drawable/ic_transform.xml" value="0.1565" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/activity_main.xml" value="0.16585365853658537" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/add_alert_dialog.xml" value="0.22" />
-        <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/alert_item.xml" value="0.1675213675213675" />
+        <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/alert_item.xml" value="0.25" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/fav_places_item.xml" value="0.2" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/fragment_alerts.xml" value="0.22" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/fragment_fav.xml" value="0.20416666666666666" />
+        <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/fragment_fav_next_days.xml" value="0.20416666666666666" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/fragment_fav_weather.xml" value="0.20416666666666666" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/fragment_home.xml" value="0.18" />
-        <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/fragment_maps.xml" value="0.20416666666666666" />
+        <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/fragment_maps.xml" value="0.22" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/fragment_next_days.xml" value="0.12727272727272726" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/fragment_splash.xml" value="0.20416666666666666" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/hours_item.xml" value="0.1675213675213675" />
-        <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/next_day_item.xml" value="0.11244979919678715" />
+        <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/next_day_item.xml" value="0.21" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/test_home.xml" value="0.1" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/layout/test_item.xml" value="0.20416666666666666" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/menu/nav_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/mipmap-anydpi-v26/ic_lanch.xml" value="0.1" />
+        <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/mipmap-anydpi-v26/ic_lanch_round.xml" value="0.1" />
         <entry key="..\:/sours/ITI_Android/WeatherForecastApp/app/src/main/res/xml/root_preferences.xml" value="0.22" />
       </map>
     </option>

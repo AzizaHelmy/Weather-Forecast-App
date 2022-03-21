@@ -7,7 +7,7 @@ import com.example.weatherforecastapp.favorite.model.Favorite
 import com.example.weatherforecastapp.home.model.Forecast
 import com.example.weatherforecastapp.utils.Converters
 
-@Database(entities = [Favorite::class,Alert::class], version = 1, exportSchema = false)
+@Database(entities = [Favorite::class,Alert::class], version = 2, exportSchema = false)
 @TypeConverters(value = [Converters::class])
 
 abstract class WeatherDB : RoomDatabase() {

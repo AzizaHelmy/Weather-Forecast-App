@@ -42,7 +42,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="#FBFBF4"
-                android:hint="description"
+                android:hint="@string/title_of_alert"
                 android:inputType="textPersonName"
                 android:maxLines="1"
                 android:ems="10"
@@ -70,7 +70,7 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
-                    android:text="From" />
+                    android:text="@string/from" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/ti_from_date_layout"
@@ -88,7 +88,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:drawableRight="@drawable/ic_calendar"
-                        android:hint="dd_mm_yy"
+                        android:hint="@string/dd_mm_yy"
                         android:inputType="date"
                         android:maxLines="1"
                         android:textSize="17sp" />
@@ -113,7 +113,7 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
-                    android:text="to"
+                    android:text="@string/to"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/Describtion_tv" />
 
@@ -133,7 +133,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:drawableRight="@drawable/ic_calendar"
-                        android:hint="dd_mm_yy"
+                        android:hint="@string/dd_mm_yy"
                         android:inputType="date"
                         android:maxLines="1"
                         android:textSize="17sp" />
@@ -165,7 +165,7 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
-                    android:text="From" />
+                    android:text="@string/from" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/ti_from_time_layout"
@@ -183,7 +183,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:drawableRight="@drawable/ic_alarm"
-                        android:hint="00:00"
+                        android:hint="@string/_00_00"
                         android:inputType="time"
                         android:maxLines="1"
                         android:textSize="17sp" />
@@ -208,7 +208,7 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
-                    android:text="to"
+                    android:text="@string/to"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/Describtion_tv" />
 
@@ -228,7 +228,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:drawableRight="@drawable/ic_alarm"
-                        android:hint="00:00"
+                        android:hint="@string/_00_00"
                         android:inputType="time"
                         android:maxLines="1"
                         android:textSize="17sp" />
@@ -258,7 +258,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
-                    android:text="Events" />
+                    android:text="@string/events" />
 
                 <Spinner
                     android:id="@+id/event_spinner"
@@ -266,9 +266,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="9dp"
                     android:layout_marginTop="4dp"
-                    android:entries="@array/events_entries"
+                    android:entries="@array/events_options"
                     android:popupBackground="@color/white"
-                    android:spinnerMode="dialog" />
+                    android:spinnerMode="dropdown" />
             </LinearLayout>
 
             <LinearLayout
@@ -282,7 +282,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="13dp"
                     android:layout_marginTop="10dp"
-                    android:text="soundType" />
+                    android:text="@string/soundtype" />
 
                 <Spinner
                     android:id="@+id/sound_spinner"
@@ -304,7 +304,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="21dp"
             android:background="@drawable/card_item"
-            android:text="add Alert" />
+            android:text="@string/add_alert" />
 
 
     </LinearLayout>

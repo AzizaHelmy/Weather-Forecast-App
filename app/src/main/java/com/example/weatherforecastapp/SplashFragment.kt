@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 
 class SplashFragment : Fragment() {
   // private lateinit var binding: FragmentSplashBinding
@@ -28,7 +29,8 @@ class SplashFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Handler(Looper.myLooper()!!).postDelayed({
             Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_homeFragment)
-        },2000)
+
+        },3000)
     }
 
 

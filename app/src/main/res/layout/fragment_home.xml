@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".home.view.HomeFragment">
+
         <TextView
             android:id="@+id/tv_country"
             android:layout_width="wrap_content"
@@ -62,6 +63,7 @@
                     android:text="@string/description"
                     android:textColor="#333435"
                     android:textSize="27sp"
+                    android:fontFamily="serif"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

@@ -11,7 +11,7 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".map.view.MapsFragment" />
+        tools:context=".map.MapsFragment" />
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -33,9 +33,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Click to add Place"
+                android:text="@string/click_to_add_place"
                 android:textSize="21sp"
-                android:padding="48dp"
+                android:padding="43dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/add_container"
             android:layout_width="match_parent"
-            android:layout_height="179dp"
+            android:layout_height="167dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent">
 
@@ -55,7 +55,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="13dp"
-                android:text="add"
+                android:text="@string/add"
+                android:padding="7dp"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -65,22 +66,25 @@
                 android:id="@+id/tv_country"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="13dp"
-                android:text="Giza/Haram"
+                android:layout_marginBottom="30dp"
+                android:fontFamily="serif"
+                android:text="Egypt"
+                android:textColor="@color/black"
                 android:textSize="23sp"
                 android:visibility="visible"
                 app:layout_constraintBottom_toTopOf="@+id/butt_add"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/tv_place"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="13dp"
-                android:padding="9dp"
-                android:text="Giza"
-                android:textSize="23sp"
+                android:layout_marginBottom="7dp"
+                android:padding="5dp"
+                android:text="Cairo"
+                android:textSize="21sp"
                 android:visibility="visible"
                 app:layout_constraintBottom_toTopOf="@id/tv_country"
                 app:layout_constraintEnd_toEndOf="@+id/tv_country"

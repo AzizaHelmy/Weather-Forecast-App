@@ -13,11 +13,11 @@ interface RetrofitService {
     //@GET("data/2.5/onecall?lat=30.621175336675805&lon=32.26823826304946&exclude=hourly.dt,daily.dt&lang=ar&units=metric&appid=3ad5f88f2ce3886821ab4d21d66f843a")
     @GET("data/2.5/onecall?")
     suspend fun getCurrentWeatherByLatAndLon(
-        @Query("lat") lat: Double=30.621175336675805,
-        @Query("lon") lon: Double=32.26823826304946,
-        @Query("lang") lang: String="ar",
+        @Query("lat") lat: Double,
+        @Query("lon") lon: Double,
+        @Query("lang") lang: String="en",
         @Query("units") units: String="metric",
         @Query("exclude") exclude: String = "minutely",
-        @Query("appid") appid: String = Constant.API_KEY
+        @Query("appid") appid: String = Constant.API_KEY6
     ): Response<Forecast>
 }

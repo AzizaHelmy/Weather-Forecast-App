@@ -31,19 +31,19 @@ class ConcretLocalSource( context: Context) :
     }
 
     override fun insertAlert(alert: Alert) {
-        TODO("Not yet implemented")
+        weatherDAO.insertAlert(alert)
     }
 
     override fun deleteAlert(alert: Alert) {
-        TODO("Not yet implemented")
+       weatherDAO.deleteAlert(alert)
     }
 
     override fun updateAlert(alert: Alert) {
-        TODO("Not yet implemented")
+        weatherDAO.updateAlert(alert)
     }
 
     override fun getAllAlerts(): LiveData<List<Alert>> {
-        TODO("Not yet implemented")
+        return weatherDAO.getAllAlerts()
     }
 
 }

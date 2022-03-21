@@ -2,15 +2,17 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
    >
 <com.google.android.material.card.MaterialCardView
     android:layout_width="match_parent"
-    app:cardElevation="7dp"
-    app:cardCornerRadius="21dp"
-    android:layout_margin="5dp"
+
+    app:cardElevation="11dp"
+    app:cardCornerRadius="19dp"
+    android:layout_margin="3dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -18,17 +20,36 @@
     android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@drawable/card_item"
-        android:layout_margin="7dp"
+        android:layout_margin="5dp"
+        android:background="#F6F4F4"
         android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/textView"
+            android:layout_width="42dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/star"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_item_description" />
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="42dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="11dp"
+            android:src="@drawable/endo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView" />
+
         <TextView
             android:id="@+id/tv_item_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="17dp"
-            android:padding="7dp"
-            android:text="Rain Alert"
-            android:textColor="@color/black"
+            android:layout_margin="5dp"
+            android:text="@string/rain_alert"
+            android:textColor="#2071B1"
             android:textSize="23sp"
             android:fontFamily="monospace"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,18 +60,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="7dp"
-            android:text="2:00 Am"
+            android:text="@string/_2_00_am"
             android:textSize="21sp"
-            app:layout_constraintStart_toStartOf="@+id/tv_item_description"
+            app:layout_constraintStart_toEndOf="@id/textView"
             app:layout_constraintTop_toBottomOf="@+id/tv_item_description" />
 
         <TextView
             android:id="@+id/tv_end_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="7dp"
-            android:layout_marginTop="16dp"
-            android:text="3:00 PM"
+            android:layout_marginTop="11dp"
+            android:text="@string/_3_00_pm"
             android:textSize="21sp"
             app:layout_constraintStart_toStartOf="@id/tv_item_start_time"
             app:layout_constraintTop_toBottomOf="@id/tv_item_start_time" />
@@ -59,18 +79,20 @@
             android:id="@+id/tv_start_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="7 March"
-            android:textSize="21sp"
-            android:layout_marginStart="17dp"
+            android:text="3 Feb"
+            android:textSize="18sp"
+            android:fontFamily="monospace"
+            android:layout_marginStart="27dp"
             app:layout_constraintStart_toEndOf="@id/tv_item_start_time"
             app:layout_constraintTop_toTopOf="@id/tv_item_start_time" />
         <TextView
             android:id="@+id/tv_end_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="7 March"
-            android:textSize="21sp"
-            android:layout_marginStart="23dp"
+            android:text="@string/_7_march"
+            android:textSize="18sp"
+            android:fontFamily="monospace"
+            android:layout_marginStart="27dp"
             app:layout_constraintStart_toEndOf="@id/tv_item_start_time"
             app:layout_constraintTop_toTopOf="@id/tv_end_time" />
 
@@ -79,10 +101,9 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="9dp"
-            android:background="@drawable/card_item"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_more" />
+            app:srcCompat="@drawable/ic_delete" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
 

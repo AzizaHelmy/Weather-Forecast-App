@@ -62,6 +62,7 @@
                         android:text="@string/description"
                         android:textColor="#333435"
                         android:textSize="27sp"
+                        android:fontFamily="serif"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

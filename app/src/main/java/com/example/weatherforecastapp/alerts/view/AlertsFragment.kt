@@ -7,18 +7,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
+import com.example.weatherforecastapp.R
 import com.example.weatherforecastapp.alerts.AlertWorker
 import com.example.weatherforecastapp.alerts.model.Alert
 import com.example.weatherforecastapp.alerts.viewmodel.AlertViewModel
 import com.example.weatherforecastapp.databinding.AddAlertDialogBinding
 import com.example.weatherforecastapp.databinding.FragmentAlertsBinding
+import com.google.android.material.snackbar.Snackbar
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 class AlertsFragment : Fragment(), AlertOnClickListener {
     private lateinit var binding: FragmentAlertsBinding
@@ -33,7 +38,15 @@ class AlertsFragment : Fragment(), AlertOnClickListener {
     //KTX
     private val alertViewModel by viewModels<AlertViewModel>()
 
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val pressedCallback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                Navigation.findNavController(view!!).navigate(R.id.homeFragment)
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, pressedCallback)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,8 +62,12 @@ class AlertsFragment : Fragment(), AlertOnClickListener {
         alertViewModel.getAllAlerts().observe(requireActivity()) {
             alerts = it
             setUpRecyclerView()
+            checkEmptyList()
         }
-        binding.fabAddAlert.setOnClickListener { showAddAlertDialoge() }
+        binding.fabAddAlert.setOnClickListener {
+
+            showAddAlertDialoge()
+        }
         bindingDialog.ivClose.setOnClickListener { dialog.dismiss() }
         bindingDialog.tvStartDate.setOnClickListener {
             val calendar = Calendar.getInstance()
@@ -114,8 +131,10 @@ class AlertsFragment : Fragment(), AlertOnClickListener {
         bindingDialog.addAlertBtn.setOnClickListener { //  val alert= Alert()
             //get the data and set it into rv
             // get alert obj and pass it to viewmodel
-            //alertViewModel.insertAlert(alert)
-            setWorker()
+            val alert = Alert("", 3, "Rain", "Azza", 1)
+            alertViewModel.insertAlert(alert)
+            checkEmptyList()
+            // setWorker()
             dialog.dismiss()
         }
     }
@@ -123,8 +142,8 @@ class AlertsFragment : Fragment(), AlertOnClickListener {
     //==========================================
     private fun setWorker() {
         var request = OneTimeWorkRequestBuilder<AlertWorker>()
-           // .setInitialDelay((delayTime[i].toLong() * 86400), TimeUnit.SECONDS)
-           // .setInputData(name)
+            // .setInitialDelay((delayTime[i].toLong() * 86400), TimeUnit.SECONDS)
+            // .setInputData(name)
             //.addTag(alertId.toString())//view model give me the alerts list
             .build()
         WorkManager.getInstance(requireContext()).enqueue(request)
@@ -148,8 +167,7 @@ class AlertsFragment : Fragment(), AlertOnClickListener {
         return Pair(hour, minute)
     }
 
-    //==========================================================================
-
+    //===================================================================
     private fun showAddAlertDialoge() {
         builder = AlertDialog.Builder(requireContext())
         builder.setCancelable(false)
@@ -158,13 +176,41 @@ class AlertsFragment : Fragment(), AlertOnClickListener {
         dialog.show()
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.setCancelable(false)
-
     }
-
+    //===================================================================
     override fun onOptionClicked(alert: Alert) {
         //if need update => call update , call dialoge
         //if need to delet =>
         alertViewModel.deleteAlert(alert)
+        showSnackBar(alert)
+        checkEmptyList()
+        alertAdapter.notifyDataSetChanged()
+        WorkManager.getInstance(requireContext()).cancelAllWorkByTag(alert.id.toString())
+    }
+
+    //=========================================
+    private fun checkEmptyList() {
+        if (alerts.isEmpty()) {
+            binding.ivEmpty.visibility = View.VISIBLE
+            binding.tvEmpty.visibility = View.VISIBLE
+            binding.rvAlerts.visibility = View.GONE
+        } else {
+            binding.ivEmpty.visibility = View.GONE
+            binding.rvAlerts.visibility = View.VISIBLE
+            binding.tvEmpty.visibility = View.GONE
+        }
+    }
+
+    //==================================================
+    private fun showSnackBar(alert: Alert) {
+        val snackbar = Snackbar.make(binding.layoutAlert, "Removed from Fav!", Snackbar.LENGTH_LONG)
+        snackbar.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        snackbar.setActionTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        snackbar.setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.purple_700))
+        snackbar.setAction("undo") {
+            alertViewModel.insertAlert(alert)
+            Toast.makeText(requireContext(), "added Again!", Toast.LENGTH_SHORT).show()
+        }.show()
     }
 
 

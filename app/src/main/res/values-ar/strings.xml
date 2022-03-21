@@ -29,4 +29,27 @@
     <string name="light_theme_preference_value">ساطع</string>
     <string name="system_theme_preference_value">اتباع النظام</string>
 
+    <string name="noting_to_show">الليسته فاضيه</string>
+    <string name="click_to_add_place">اضغط لإضافه مكان</string>
+    <string name="add">اضافه</string>
+    <string name="gps_description">السماح للتطبيق بمعرفه موقعك الحالي</string>
+    <string name="gps">استخدم موقعك الحالي</string>
+    <string name="weather_Location">موقع الطقس</string>
+    <string name="map_description">اختر موقع من الخريطه</string>
+    <string name="map">الموقع</string>
+    <string name="units">الوحدات</string>
+    <string name="unit_system">وحدات النظام</string>
+    <string name="language">اللغه</string>
+    <string name="app_language">لغه التطبيق</string>
+    <string name="notification">الإشعارات</string>
+    <string name="notificaion_description">الاشعار بحاله الطقس من خلال تنبيه</string>
+    <string name="theme">أوضاع التطبيق</string>
+    <string name="app_theme">وضع التطبيق</string>
+    <string name="events">الحدث</string>
+    <string name="to">الي</string>
+    <string name="from">من</string>
+    <string name="soundtype">نوع التنبيه</string>
+    <string name="add_alert">اضافه تنبيه</string>
+    <string name="title_of_alert">الوصف</string>
+    <string name="no_alerts">لا يوجد تنبيهات</string>
 </resources>

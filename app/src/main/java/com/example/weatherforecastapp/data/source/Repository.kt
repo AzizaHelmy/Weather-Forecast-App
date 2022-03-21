@@ -36,7 +36,7 @@ class Repository(
         lat: Double,
         lon: Double,
         lang: String = "en",
-        unit: String = "imperial"
+        unit: String = "metric"
     ) {
         CoroutineScope(Dispatchers.IO).launch {
             val weatherCall = RetrofitFactory.getInstance().create(RetrofitService::class.java)
@@ -80,11 +80,17 @@ class Repository(
     }
 
     fun deleteAlert(alert: Alert) {
-        localSource.deleteAlert(alert)
+        CoroutineScope(Dispatchers.IO).launch{
+            localSource.deleteAlert(alert)
+        }
+
     }
 
     fun insertAlert(alert: Alert) {
-        localSource.insertAlert(alert)
+        CoroutineScope(Dispatchers.IO).launch {
+            localSource.insertAlert(alert)
+        }
+
     }
 
     fun getAllAlerts(): LiveData<List<Alert>> {

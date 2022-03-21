@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_marginBottom="7dp"
+    android:layout_height="match_parent">
+
+
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,13 +19,12 @@
     android:layout_margin="16dp"
     android:layout_gravity="center"
     app:cardCornerRadius="22dp"
-
     app:cardElevation="15dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="17dp"
+        android:padding="13dp"
         >
 
         <TextView
@@ -69,7 +74,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/tv_humidity_temp"
@@ -120,7 +125,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/tv_wind_speed_unit_item"
@@ -166,12 +171,12 @@
             app:cardBackgroundColor="#ADCEE8"
             app:cardCornerRadius="17dp"
             app:cardElevation="7dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/card_humidity"
             app:layout_constraintTop_toBottomOf="@+id/card_humidity">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_marginBottom="17dp"
                 android:layout_height="match_parent">
 
                 <TextView
@@ -222,7 +227,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/tv_cloud_unit_item"
@@ -296,9 +301,11 @@
             android:layout_height="wrap_content"
             android:text="@string/description"
             android:textSize="27sp"
+            android:fontFamily="serif"
             app:layout_constraintEnd_toEndOf="@id/tv_temp_item"
             app:layout_constraintStart_toStartOf="@id/tv_temp_item"
             app:layout_constraintTop_toBottomOf="@id/tv_temp_item" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
 </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

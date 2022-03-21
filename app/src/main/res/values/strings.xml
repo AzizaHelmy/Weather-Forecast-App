@@ -33,5 +33,36 @@
     <string name="system_theme_description">System default</string>
     <string name="dark_theme_description">Dark</string>
     <string name="light_theme_description">Light</string>
+    <string name="title_of_alert">description</string>
+    <string name="dd_mm_yy" translatable="false">dd_mm_yy</string>
+    <string name="to">to</string>
+    <string name="from">From</string>
+    <string name="_00_00" translatable="false">00:00</string>
+    <string name="events">Events</string>
+    <string name="soundtype">soundType</string>
+    <string name="add_alert">add Alert</string>
+    <string name="_7_march" translatable="false">7 March</string>
+    <string name="_3_00_pm" translatable="false">3:00 PM</string>
+    <string name="_2_00_am" translatable="false">2:00 Am</string>
+    <string name="rain_alert" translatable="false">Rain Alert</string>
+    <string name="cairo" translatable="false">Cairo</string>
+    <string name="noting_to_show">Noting to show</string>
+    <string name="click_to_add_place">Click to add Place</string>
+    <string name="add">add</string>
+    <string name="gps_description">Allow the app to get your location</string>
+    <string name="gps">GPS</string>
+    <string name="weather_Location">Weather Location</string>
+    <string name="map_description">Choose your location from Map</string>
+    <string name="map">Map</string>
+    <string name="units">Units</string>
+    <string name="unit_system">Unit System</string>
+    <string name="language">Language</string>
+    <string name="app_language">App Language</string>
+    <string name="notification">Notification</string>
+    <string name="notificaion_description">show current weather as Notification</string>
+    <string name="theme">Theme</string>
+    <string name="app_theme">App Theme</string>
+    <string name="no_alerts">No Alerts</string>
+    <string name="no_internet">No Internet</string>
 
 </resources>
